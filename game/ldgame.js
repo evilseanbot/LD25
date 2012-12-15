@@ -1,69 +1,109 @@
-var mapX = 1;
-var mapY = 1;
+//var mapX = 1;
+//var mapY = 1;
 var firstTime = true;
 
-function changeMap() {
-    for (x in Crafty("*")) {
-        Crafty(x).destroy;
-    }
-}
 
 $(document).ready(function() {
 
-  // Initialize Crafty
-  Crafty.init(640, // 640 Pixels Wide
-              480  // 480 Pixels Tall
+  Crafty.init(640, 
+              480
               )
-        .background("white");
+        .background("#ddeeff");
   Crafty.canvas.init(); // Create a Canvas Element 
-  
-  Crafty.audio.add({
-      bump: ["bump2.wav"]
-  });
-  
+    
   // This will create entities called hero
-  Crafty.sprite(32, 63, "images/pickleTile.png", {
-     hero: [0,0]
+  
+  Crafty.sprite(64, 64, "dog.png", {
+     dog: [0,0]
   }); 
-  Crafty.sprite(31, 29, "images/flower.png", {
-     flower: [0,0]
-  });
-  Crafty.sprite(32, "images/characters.png", {
-     snailimg: [2,14],
-     skelimg: [17,16],
-     skelemptyimg: [18, 16]
-  });
-  
 
-  Crafty.scene("loading", function() {
-    Crafty.load(["images/pickleTile.png", "images/flower.png", "ground_tiles.png"], function() {
-       Crafty.scene("main"); // Run the main scene      
-    });
-  });
+  Crafty.sprite(64, 64, "panties.png", {
+     panties: [0,0]
+  }); 
   
+  Crafty.scene("loading", function() {
+      Crafty.scene("main");
+  });
   
   Crafty.scene("main",function() {
-    //Crafty.audio.play("song",1, 0.10);        
     if (firstTime) {
-        var player = Crafty.e("Player, Persist");
+        var player = Crafty.e("Player")
+            .attr({x: 320, y:240, h:64, w:64})        
     }
+    
+    
+    panties = Crafty.e("2D, Canvas, panties, Pickup")
+        .attr({x: 100, y:100});
+    /*
+    gameScreen = Crafty.e("2D, Canvas, Mouse")
+        .attr({x: 0, y:0, h: 640, w:480});
+        
+    gameScreen.rolling = false;
+    gameScreen.stillCounter = 0;
+    gameScreen.mouseShakesThisSecond = 0;    
+    gameScreen.mouseShakesLastSecond = 0;
+    gameScreen.frameOfSecond = 0;
+    gameScreen.mouseMovingLeft = true;
+    gameScreen.oldMouseX = 0;
+        
+    gameScreen.bind('MouseMove', function(e)  {
+        this.rolling = true;
+        this.mouseMovesThisSecond++;
+        
+        if (this.oldMouseX > e.x) {
+            if (!this.mouseMovingLeft)
+                this.mouseShakesThisSecond++;
+        
+            this.mouseMovingLeft = true;
+        } else if (this.oldMouseX < e.x) {
+            if (this.mouseMovingLeft)
+                this.mouseShakesThisSecond++;
+        
+            this.mouseMovingLeft = false;
+        }
+        
+        gameScreen.oldMouseX = e.x;
+        
+        
+    });
+    
+    gameScreen.bind('EnterFrame', function() {
+        this.rolling = false;
+        
+        if (!this.rolling) {
+            this.stillCounter++;
+            
+            if (this.stillCounter > 60) {
+                this.stillCounter = 0;
+            }
+        } else {
+            this.stillCounter = 0;
+        }
+        
+        this.frameOfSecond++;
+        
+        if (this.frameOfSecond > 60) {
+            this.frameOfSecond = 0;
+            this.mouseShakesLastSecond = this.mouseShakesThisSecond;
+            this.mouseShakesThisSecond = 0;
+            
+            if (this.mouseShakesLastSecond > 7) {
+                //Crafty("Player").sprite.spriteColor("red");
+            } else {
+                //Crafty("Player").sprite.spriteColor("black");
+            }
+        }                
+    });
+    */
+    
+    //var particles = Crafty.e("ParticleSystem");
+    
+    //particles.load("testParticle.json");
 
+        
     firstTime = false;   
-    
-    Crafty.e("TiledLevel").tiledLevel("tiled/warmupmap"+mapX+""+mapY+".json");    
-    
-    var borders = Crafty.e("Borders");
-    
-    var textBg = Crafty.e("2D, Canvas, Color") 
-        .attr({x: 0, y: 360, h: 120, w:640, alpha: 0.5, z: 600})
-        .color("black")
-    
-    var textBox = Crafty.e("2D, Canvas, Text")
-        .attr({x: 50, y:410, z:601})
-        .text("hello")
-        .textColor("#ffffff")
-        .textFont({family: 'Arial', size: "40px"})        
-  });
+   
+   });
     
   Crafty.scene("loading");
 });
