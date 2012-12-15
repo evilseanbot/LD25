@@ -30,7 +30,7 @@ Crafty.c("Player", {
              
       this.addComponent("PlayerControls")
           .addComponent("Multiway")
-          .multiway(3, {W: -90, S: 90, D:0, A:180})
+          .multiway(3, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW:0, LEFT_ARROW:180})
       
       this.activeBox = Crafty.e("2D, Canvas, Collision, Persist")
           .attr({h: 64, w:64})        

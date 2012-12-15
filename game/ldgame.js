@@ -8,7 +8,7 @@ $(document).ready(function() {
   Crafty.init(640, 
               480
               )
-        .background("#ddeeff");
+        .background("#ddffdd");
   Crafty.canvas.init(); // Create a Canvas Element 
     
   // This will create entities called hero
@@ -20,6 +20,16 @@ $(document).ready(function() {
   Crafty.sprite(64, 64, "panties.png", {
      panties: [0,0]
   }); 
+
+  Crafty.sprite(64, 64, "hole.png", {
+     hole: [0,0]
+  }); 
+  
+  Crafty.sprite(64, 64, "CoveredHole.png", {
+     coveredHole: [0,0]
+  }); 
+  
+  
   
   Crafty.scene("loading", function() {
       Crafty.scene("main");
@@ -32,7 +42,7 @@ $(document).ready(function() {
     }
     
     
-    panties = Crafty.e("2D, Canvas, panties, Pickup")
+    panties = Crafty.e("2D, Canvas, panties, Pickup, Tween")
         .attr({x: 100, y:100});
     /*
     gameScreen = Crafty.e("2D, Canvas, Mouse")
