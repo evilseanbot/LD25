@@ -10,11 +10,15 @@ Crafty.c("Player", {
           .addComponent("Collision")
           .addComponent("SeperateSprite")
           .addComponent("Solid")
-          .addComponent("Persist")          
+          .addComponent("Persist")  
+          .addComponent("Shaker")           
           .attr({x: 400, y:50, h: 64, w: 64, z:100})
           
         this.sprite = Crafty.e("2D, Canvas, SpriteAnimation, dog, Mouse, Persist, SpriteColor")
           .attr({x: 400, y:50, h: 64, w: 64, z:100})      
+          .animate("running", 0, 0, 3)
+          .animate("standing", 0, 0, 0);
+          
           //.animate('PlayerRunningdown', 0, 0, 7) //setup  animation
           //.animate('PlayerRunningleft', 0, 1, 7) //setup  animation
           //.animate('PlayerRunningup', 0, 2, 7) //setup  animation
@@ -27,7 +31,7 @@ Crafty.c("Player", {
              
       this.addComponent("PlayerControls")
           .addComponent("Multiway")
-          .multiway(6, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW:0, LEFT_ARROW:180})
+          .multiway(5, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW:0, LEFT_ARROW:180})
       
       this.activeBox = Crafty.e("2D, Canvas, Collision, Persist")
           .attr({h: 64, w:64})        
@@ -40,7 +44,7 @@ Crafty.c("Player", {
         */  
         
         if (this.holdingObject) {
-            this.heldObject.attr({x: this.x, y:this.y});
+            this.heldObject.attr({x: this.x+12, y:this.y-12});
         }
     
         if (this._facing == "up") {

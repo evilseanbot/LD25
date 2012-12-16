@@ -1,0 +1,8 @@
+* If you eat something, it goes into your stomach, along with a unit of vomit.
+* As you play, at random you will want to barf up things put into your stomach. The more things, the sooner you'll want to throw up.
+* When you start to throw up, there is an alert created at the bottom of the screen.
+* You can press the BARK button to throw up right now, or you can wait until you are forced to throw up.
+
+* When you throw up, you drop anything that was in your mouth, and also place what you were throwing up on to the ground. You are also shaking and immobile for a decent period of time.
+
+

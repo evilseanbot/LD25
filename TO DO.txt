@@ -1,0 +1,7 @@
+TO ADD:
+- Win Condition: (Time?)
+- Improve digging mechanics.
+- Buried evidence / eaten evidence distinction.
+- Better bark sound.
+- Bark particles.
+- Dirt particles.

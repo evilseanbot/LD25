@@ -49,6 +49,7 @@
                 var hole = Crafty("Player").hit("hole")[0]["obj"];
                 hole.addComponent("coveredHole");
                 hole.removeComponent("hole");
+                this.shake(60);
                 
                 if (hole.hit("panties") ) {
                     var panties = hole.hit("panties")[0]["obj"];
@@ -61,6 +62,7 @@
                 var hole = Crafty("Player").hit("coveredHole")[0]["obj"];
                 hole.addComponent("hole");
                 hole.removeComponent("CoveredHole");                
+                this.shake(60);
                 
                 if (hole.hit("panties") ) {
                     var panties = hole.hit("panties")[0]["obj"];
@@ -73,6 +75,8 @@
                 var hole = Crafty.e("2D, Canvas, hole, Collision, Tween")
                   .attr({x: Crafty("Player").x, y: Crafty("Player").y, z: -1, alpha: 0.00})
                   .tween({alpha: 1.00}, 60);
+                  
+                this.shake(60);
                 
                 
             }
@@ -83,6 +87,7 @@
                 this.heldObject.addComponent("hidden");                
                 this.holdingObject = false;
                 Crafty.audio.play("eat");
+                this.shake(30);
 
             } else {
                 Crafty.audio.play("bark");
@@ -94,7 +99,8 @@
           var oldFacing = this._facing;
           this._facing = this._keysFacing[e.key];                              
           if ((this._numKeysDown == 0) || (oldFacing != this._facing)) {          
-            //this.sprite.stop();
+            this.sprite.stop();
+            this.sprite.animate('running', 8, -1);
             //this.sprite.animate('PlayerRunning' + this._facing, 30, -1);
           }
           this._numKeysDown++; 
@@ -105,7 +111,8 @@
         if(this._keys[e.key]) {
           this._numKeysDown--;
           if (this._numKeysDown == 0) {          
-            //this.sprite.stop();
+            this.sprite.stop();
+            this.sprite.animate('standing', 8, -1);
             //this.sprite.animate('PlayerStanding' + this._facing, 30, -1);
           }
         }
