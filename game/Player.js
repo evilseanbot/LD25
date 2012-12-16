@@ -23,14 +23,11 @@ Crafty.c("Player", {
           //.animate('PlayerStandingdown', 0, 0, 0) //setup  animation            
           //.animate('PlayerStandingleft', 0, 1, 0) //setup  animation            
           //.animate('PlayerStandingup', 0, 2, 0) //setup  animation
-          //.animate('PlayerStandingright', 0, 3, 0) //setup  animation
-             
-      
-      
+          //.animate('PlayerStandingright', 0, 3, 0) //setup  animation      
              
       this.addComponent("PlayerControls")
           .addComponent("Multiway")
-          .multiway(3, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW:0, LEFT_ARROW:180})
+          .multiway(6, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW:0, LEFT_ARROW:180})
       
       this.activeBox = Crafty.e("2D, Canvas, Collision, Persist")
           .attr({h: 64, w:64})        

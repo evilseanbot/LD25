@@ -45,6 +45,7 @@
             }
         } else if (e.key == 88) {
             if (Crafty("Player").hit("hole") ) {
+                Crafty.audio.play("dig");            
                 var hole = Crafty("Player").hit("hole")[0]["obj"];
                 hole.addComponent("coveredHole");
                 hole.removeComponent("hole");
@@ -55,6 +56,7 @@
                 }                
                 
             } else if (Crafty("Player").hit("coveredHole") ) {
+                Crafty.audio.play("dig");                                                
                 var hole = Crafty("Player").hit("coveredHole")[0]["obj"];
                 hole.addComponent("hole");
                 hole.removeComponent("CoveredHole");                
@@ -66,13 +68,23 @@
 
                 
             } else {        
-              var hole = Crafty.e("2D, Canvas, hole, Collision, Tween")
-                .attr({x: Crafty("Player").x, y: Crafty("Player").y, z: -1, alpha: 0.00})
-                .tween({alpha: 1.00}, 60);
+                Crafty.audio.play("dig");                                    
+                var hole = Crafty.e("2D, Canvas, hole, Collision, Tween")
+                  .attr({x: Crafty("Player").x, y: Crafty("Player").y, z: -1, alpha: 0.00})
+                  .tween({alpha: 1.00}, 60);
                 
                 
             }
-            
+                    
+        } else if (e.key == 67) {
+            if (this.holdingObject) {
+                this.heldObject.tween({alpha: 0.00}, 30);
+                this.holdingObject = false;
+                Crafty.audio.play("eat");
+
+            } else {
+                Crafty.audio.play("bark");
+            }
         }
       
         if(this._keys[e.key]) {

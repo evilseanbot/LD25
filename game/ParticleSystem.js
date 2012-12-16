@@ -34,18 +34,14 @@ Crafty.c("ParticleSystem", {
     emitsPerSecond: 60,
     framesSinceEmit: 0,
     particleTimeToLive: 60,
-    load: function(src) {
-/*        $.getJSON('testParticle.json', function(data) {
-              alert("Loaded the json");
-              alert(data["Height"]);
+    load: function(entity, src) {
+        $.getJSON('testParticle.json', function(data) {
+            for (i in entity.mutables) {
+                entity[entity.mutables[i]] = data[entity.mutables[i]];
+                entity[entity.mutables[i]].factoryCurrent = entity[entity.mutables[i]].factoryStart;
+            }
         })
-        .success(function() { alert("success") })
-        .complete(function() { alert("complete") })
-        .error(function() {
-            console.log("error " + textStatus);
-            console.log("incoming Text " + jqXHR.responseText);        
-        });*/
-        $.ajax({
+        /*$.ajax({
             url: 'testParticle.json',
             dataType: 'json',
             success: function( data ) {
@@ -57,7 +53,7 @@ Crafty.c("ParticleSystem", {
                   console.log(i + ": " +data[i]);
               }
             }
-          });        
+          });*/        
         
     },
     init: function()  {
@@ -70,8 +66,8 @@ Crafty.c("ParticleSystem", {
 
       function createParticle(entity) {
           var particle = Crafty.e("2D, Canvas, Multiway, Particle, Color, Tween")
-          .attr({x: entity.X.factoryCurrent, 
-              y:entity.Y.factoryCurrent, 
+          .attr({x: entity.X.factoryCurrent + entity.x, 
+              y:entity.Y.factoryCurrent + entity.y, 
               z:entity.z, 
               h:entity.Height.factoryCurrent, 
               w:entity.Height.factoryCurrent, 
@@ -84,8 +80,9 @@ Crafty.c("ParticleSystem", {
           particle.tween({alpha: realParticleEnd(entity.Alpha), 
               h: realParticleEnd(entity.Height), 
               w: realParticleEnd(entity.Height), 
-              x: realParticleEnd(entity.X),
-              y: realParticleEnd(entity.Y)}, parseInt(particle.timeToLive) );                    
+              x: realParticleEnd(entity.X) + entity.x,
+              y: realParticleEnd(entity.Y) + entity.y
+          }, parseInt(particle.timeToLive));                    
                     
           particle.AngleStart = entity.Angle.factoryCurrent;
           particle.AngleCurrent = particle.AngleStart;          
@@ -93,7 +90,7 @@ Crafty.c("ParticleSystem", {
                     
           particle.SpeedStart = entity.Speed.factoryCurrent;
           particle.SpeedCurrent = particle.SpeedStart;          
-          particle.SpeedEnd = entity.Speed.factoryCurrent + entity.Speed.particleEnd;
+          particle.SpeedEnd = entity.Speed.factoryCurrent + entity.Speed.particleEnd;                    
        }      
        
       function updateMutable(entity, mutable) {

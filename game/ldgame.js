@@ -8,7 +8,7 @@ $(document).ready(function() {
   Crafty.init(640, 
               480
               )
-        .background("#ddffdd");
+        .background("#bbffbb");
   Crafty.canvas.init(); // Create a Canvas Element 
     
   // This will create entities called hero
@@ -28,8 +28,18 @@ $(document).ready(function() {
   Crafty.sprite(64, 64, "CoveredHole.png", {
      coveredHole: [0,0]
   }); 
+
+  Crafty.sprite(64, 128, "wife.png", {
+     wife: [0,0]
+  }); 
   
   
+  
+  Crafty.audio.add({
+      bark: ["bark.wav"],
+      eat: ["eat.wav"],
+      dig: ["dig.wav"]
+  });  
   
   Crafty.scene("loading", function() {
       Crafty.scene("main");
@@ -43,7 +53,7 @@ $(document).ready(function() {
     
     
     panties = Crafty.e("2D, Canvas, panties, Pickup, Tween")
-        .attr({x: 100, y:100});
+        .attr({x: 300, y:100});
     /*
     gameScreen = Crafty.e("2D, Canvas, Mouse")
         .attr({x: 0, y:0, h: 640, w:480});
@@ -106,11 +116,36 @@ $(document).ready(function() {
     });
     */
     
-    //var particles = Crafty.e("ParticleSystem");
+    /*
+    var particles = Crafty.e("ParticleSystem")
+    .attr({x: 50, y: 50, z: 2000}); 
     
-    //particles.load("testParticle.json");
-
+    particles.load(particles, "testParticle.json");
+    */
+    
+    var wife = Crafty.e("2D, Canvas, Wife, SeperateSprite, Multiway")
+        .attr({x: 300, y: 700, h: 64, w:64})
+        .multiway(3, {});
         
+    wife.sprite = Crafty.e("2D, Canvas, wife");
+    
+    wife.searchBox = Crafty.e("2D, Canvas, Color, Collision")
+        .attr({h: 192, w:192})
+        .color("#ffff00");
+    
+    wife.bind("EnterFrame", function() {
+        this._movement.y = -1;
+        this.searchBox.attr({x: this.x-64, y:this.y-192});
+        
+    });
+    
+    wife.searchBox.bind("EnterFrame", function() {
+        if (this.hit("panties")) {
+            player.destroy();
+            Crafty.scene("main");
+        }    
+    });
+            
     firstTime = false;   
    
    });
