@@ -37,7 +37,7 @@
             
               if (touchedObject) {
                 
-                  if (activatedObject.has("panties")) {
+                  if (activatedObject.has("Pickup")) {
                       if (!activatedObject.has("hidden")) {
                           this.heldObject = activatedObject;
                           this.heldObject.attr({z:1000});
@@ -55,12 +55,12 @@
                 hole.removeComponent("hole");
                 //this.shake(60);
                 
-                if (hole.hit("panties") ) {
-                    var panties = hole.hit("panties")[0]["obj"];
+                if (hole.hit("Pickup") ) {
+                    var pickup = hole.hit("Pickup")[0]["obj"];
                     
-                    if (!panties.has("Held") ) {
-                        panties.tween({alpha: 0}, 30);
-                        panties.addComponent("hidden");
+                    if (!pickup.has("Held") ) {
+                        pickup.tween({alpha: 0}, 30);
+                        pickup.addComponent("hidden");
                     }
                 }                
                 
@@ -71,10 +71,10 @@
                 hole.removeComponent("CoveredHole");                
                 //this.shake(60);
                 
-                if (hole.hit("panties") ) {
-                    var panties = hole.hit("panties")[0]["obj"];
-                    panties.tween({alpha: 1}, 30);
-                        panties.removeComponent("hidden");                    
+                if (hole.hit("Pickup") ) {
+                    var pickup = hole.hit("Pickup")[0]["obj"];
+                    pickup.tween({alpha: 1}, 30);
+                        pickup.removeComponent("hidden");                    
                 }                
 
                 

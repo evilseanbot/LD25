@@ -19,6 +19,11 @@ $(document).ready(function() {
   Crafty.sprite(64, 64, "panties.png", {
      panties: [0,0]
   }); 
+  
+  Crafty.sprite(64, 64, "shirt.png", {
+     shirt: [0,0]
+  }); 
+
 
   Crafty.sprite(64, 64, "snowHole.png", {
      hole: [0,0]
@@ -53,8 +58,14 @@ $(document).ready(function() {
         var player = Crafty.e("Player")
             .attr({x: 320, y:240})        
 
-        var panties = Crafty.e("2D, Canvas, panties, Pickup, Tween, Persist")
-            .attr({x: 300, y:100, z:2});            
+        var panties = Crafty.e("2D, Canvas, Evidence, panties, Pickup, Tween, Persist")
+            .attr({x: 300, y:100, z:2});    
+
+        var panties = Crafty.e("2D, Canvas, Evidence, shirt, Pickup, Tween, Persist")
+            .attr({x: 400, y:200, z:2});    
+           
+            
+        var readout = Crafty.e("Readout");
             
     }
     
@@ -87,8 +98,8 @@ $(document).ready(function() {
         });
         
         wife.searchBox.bind("EnterFrame", function() {
-            if (this.hit("panties")) {
-                if (!this.hit("panties")[0]["obj"].has("hidden")) {
+            if (this.hit("Evidence")) {
+                if (!this.hit("Evidence")[0]["obj"].has("hidden")) {
                     Crafty.audio.play("scream");
                     player.destroy();
                     player.sprite.destroy();

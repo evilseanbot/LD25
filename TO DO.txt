@@ -7,7 +7,6 @@ TO ADD NOW:
 - Better tileset
 - Spring Night tileset
 - Dream sequences
-- Controls readout
 - Button-mash to dig
 - Better lose sequence
 - Evidence System more robust (Remove specific references to panties.)
@@ -30,17 +29,19 @@ WORK ON LATER:
 - Child sprite.
 - Mines.
 - Fix glitch with shaking/seizure.
+- Bury multiple evidence in the same hole.
+- Controls read out tells you when you can bury something.
+- Button-mash to dig
 
 TO DO SEAN:
 - Throw-up system.
-- Controls readout
-- Button-mash to dig
 - Better lose sequence
-- Evidence System more robust (Remove specific references to panties.)
 - Better movement of searchers (Random? predetermined?)
 - Win Sequence (Time? All evidence hidden?)
 - Make dog face both directions
-
+- Can't unbury eaten evidence.
+- Scenario is played out.
+- Objects don't ("Follow screen")
 
 TO DO CHRIS:
 - Music
