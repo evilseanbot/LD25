@@ -67,11 +67,8 @@ Crafty.c("Player", {
              this.attr({x: from.x, y:from.y});
             // Crafty.audio.play("bump",1, 0.10);
           }
-          
+          /*
           if(this.hit('SouthBorder')) {
-              this.attr({y: 20});
-              mapY += 1;
-              Crafty.scene("main");
           }
           if(this.hit('EastBorder')) {
               this.attr({x: 20});
@@ -88,6 +85,7 @@ Crafty.c("Player", {
               mapX -= 1;
               Crafty.scene("main");              
           }
+          */
           
       });      
       

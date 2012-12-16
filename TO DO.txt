@@ -16,6 +16,11 @@ TO ADD NOW:
 - Better scream sound.
 - Make dog face both directions
 - Add backwards facing for dog.
+- Changes to tileset:
+  - Reverse some tiles.
+  - Add floors not next to walls.
+  - Add snow.
+- Redo Map.
 
 WORK ON LATER:
 - Bark particles.
@@ -32,6 +37,7 @@ WORK ON LATER:
 - Bury multiple evidence in the same hole.
 - Controls read out tells you when you can bury something.
 - Button-mash to dig
+- Some sort of garbage collection problem: Stuff isn't being destroyed when setting a new scene.
 
 TO DO SEAN:
 - Throw-up system.
@@ -39,9 +45,7 @@ TO DO SEAN:
 - Better movement of searchers (Random? predetermined?)
 - Win Sequence (Time? All evidence hidden?)
 - Make dog face both directions
-- Can't unbury eaten evidence.
 - Scenario is played out.
-- Objects don't ("Follow screen")
 
 TO DO CHRIS:
 - Music
@@ -51,6 +55,10 @@ TO DO CHRIS:
 - Father sprite
 - Other Woman Sprite
 - Policeman Sprite
-- Better tileset
 - Spring Night tileset
 - Dream sequences
+- Redo Map
+- Changes to tileset:
+  - Reverse some tiles.
+  - Add floors not next to walls.
+  - Add snow.

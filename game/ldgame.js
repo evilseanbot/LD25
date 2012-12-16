@@ -58,10 +58,10 @@ $(document).ready(function() {
         var player = Crafty.e("Player")
             .attr({x: 320, y:240})        
 
-        var panties = Crafty.e("2D, Canvas, Evidence, panties, Pickup, Tween, Persist")
+        var panties = Crafty.e("2D, Canvas, Evidence, panties, Pickup, Tween, Persist, Roaming")
             .attr({x: 300, y:100, z:2});    
 
-        var panties = Crafty.e("2D, Canvas, Evidence, shirt, Pickup, Tween, Persist")
+        var shirt = Crafty.e("2D, Canvas, Evidence, shirt, Pickup, Tween, Persist, Roaming")
             .attr({x: 400, y:200, z:2});    
            
             
@@ -81,13 +81,13 @@ $(document).ready(function() {
     */
     
     if (firstTime) {
-        var wife = Crafty.e("2D, Canvas, Wife, SeperateSprite, Multiway")
+        var wife = Crafty.e("2D, Canvas, Wife, SeperateSprite, Multiway, Roaming, Persist")
             .attr({x: 300, y: 700, h: 64, w:64})
             .multiway(3, {});
             
-        wife.sprite = Crafty.e("2D, Canvas, wife");
+        wife.sprite = Crafty.e("2D, Canvas, wife, Roaming, Persist");
         
-        wife.searchBox = Crafty.e("2D, Canvas, Color, Collision")
+        wife.searchBox = Crafty.e("2D, Canvas, Color, Collision, Roaming, Persist")
             .attr({h: 192, w:192, z: 3, alpha: 0.5})
             .color("#ffff00");
         
@@ -101,8 +101,12 @@ $(document).ready(function() {
             if (this.hit("Evidence")) {
                 if (!this.hit("Evidence")[0]["obj"].has("hidden")) {
                     Crafty.audio.play("scream");
-                    player.destroy();
                     player.sprite.destroy();
+                    player.destroy();
+                    wife.searchBox.destroy();
+                    wife.sprite.destroy();
+                    Crafty("Roaming").destroy();
+                    
                     firstTime = true;
                     Crafty.scene("main");
                 }
