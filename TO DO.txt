@@ -1,8 +1,8 @@
 TO ADD NOW:
-- Multiple Rooms
 - Music
 - Throw-up system.
 - Father sprite
+- Other Woman Sprite
 - Policeman Sprite
 - Better tileset
 - Spring Night tileset
@@ -12,9 +12,11 @@ TO ADD NOW:
 - Better lose sequence
 - Evidence System more robust (Remove specific references to panties.)
 - Better movement of searchers (Random? predetermined?)
-- Win Sequence (Time?)
+- Win Sequence (Time? All evidence hidden?)
 - Better bark sound.
 - Better scream sound.
+- Make dog face both directions
+- Add backwards facing for dog.
 
 WORK ON LATER:
 - Bark particles.
@@ -27,3 +29,27 @@ WORK ON LATER:
 - Kid draws attention of mom
 - Child sprite.
 - Mines.
+- Fix glitch with shaking/seizure.
+
+TO DO SEAN:
+- Throw-up system.
+- Controls readout
+- Button-mash to dig
+- Better lose sequence
+- Evidence System more robust (Remove specific references to panties.)
+- Better movement of searchers (Random? predetermined?)
+- Win Sequence (Time? All evidence hidden?)
+- Make dog face both directions
+
+
+TO DO CHRIS:
+- Music
+- Better bark sound.
+- Better scream sound.
+- Add backwards facing for dog.
+- Father sprite
+- Other Woman Sprite
+- Policeman Sprite
+- Better tileset
+- Spring Night tileset
+- Dream sequences

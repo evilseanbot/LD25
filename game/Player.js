@@ -69,22 +69,22 @@ Crafty.c("Player", {
           }
           
           if(this.hit('SouthBorder')) {
-              this.attr({y: 0});
+              this.attr({y: 20});
               mapY += 1;
               Crafty.scene("main");
           }
           if(this.hit('EastBorder')) {
-              this.attr({x: 0});
+              this.attr({x: 20});
               mapX += 1;
               Crafty.scene("main");              
           }
           if(this.hit('NorthBorder')) {
-              this.attr({y: 447});
+              this.attr({y: 420});
               mapY -= 1;
               Crafty.scene("main");              
           }
           if(this.hit('WestBorder')) {
-              this.attr({x: 608});
+              this.attr({x: 580});
               mapX -= 1;
               Crafty.scene("main");              
           }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="8" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" source="winterhouse_tileset.tsx"/>
+ <layer name="Tile Layer 1" width="10" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NmYGBgJgIzEoEHUh0pmIkAJkUdAGSLdn1AAQAA
+  </data>
+ </layer>
+</map>

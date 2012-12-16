@@ -1,5 +1,5 @@
-//var mapX = 1;
-//var mapY = 1;
+var mapX = 0;
+var mapY = 0;
 var firstTime = true;
 
 
@@ -32,6 +32,7 @@ $(document).ready(function() {
      wife: [0,0]
   }); 
   
+  //Crafty.load("tileset.png");
   
   
   Crafty.audio.add({
@@ -51,14 +52,16 @@ $(document).ready(function() {
     if (firstTime) {
         var player = Crafty.e("Player")
             .attr({x: 320, y:240})        
+
+        var panties = Crafty.e("2D, Canvas, panties, Pickup, Tween, Persist")
+            .attr({x: 300, y:100, z:2});            
+            
     }
     
-    //Crafty.e("TiledLevel").tiledLevel("tiled/warmupmap"+mapX+""+mapY+".json");    
-    Crafty.e("TiledLevel").tiledLevel("winterhouse_leftcorner.json");    
-        
-    panties = Crafty.e("2D, Canvas, panties, Pickup, Tween")
-        .attr({x: 300, y:100, z:2});
-    
+    Crafty.e("TiledLevel").tiledLevel("winterhouse"+mapX+""+mapY+".json");    
+
+    var borders = Crafty.e("Borders");    
+            
     /*
     var particles = Crafty.e("ParticleSystem")
     .attr({x: 50, y: 50, z: 2000}); 
@@ -66,33 +69,35 @@ $(document).ready(function() {
     particles.load(particles, "testParticle.json");
     */
     
-    var wife = Crafty.e("2D, Canvas, Wife, SeperateSprite, Multiway")
-        .attr({x: 300, y: 700, h: 64, w:64})
-        .multiway(3, {});
+    if (firstTime) {
+        var wife = Crafty.e("2D, Canvas, Wife, SeperateSprite, Multiway")
+            .attr({x: 300, y: 700, h: 64, w:64})
+            .multiway(3, {});
+            
+        wife.sprite = Crafty.e("2D, Canvas, wife");
         
-    wife.sprite = Crafty.e("2D, Canvas, wife");
-    
-    wife.searchBox = Crafty.e("2D, Canvas, Color, Collision")
-        .attr({h: 192, w:192, z: 3, alpha: 0.5})
-        .color("#ffff00");
-    
-    wife.bind("EnterFrame", function() {
-        this._movement.y = -1;
-        this.searchBox.attr({x: this.x-64, y:this.y-192});
+        wife.searchBox = Crafty.e("2D, Canvas, Color, Collision")
+            .attr({h: 192, w:192, z: 3, alpha: 0.5})
+            .color("#ffff00");
         
-    });
-    
-    wife.searchBox.bind("EnterFrame", function() {
-        if (this.hit("panties")) {
-            if (!this.hit("panties")[0]["obj"].has("hidden")) {
-                Crafty.audio.play("scream");
-                player.destroy();
-                player.sprite.destroy();
-                firstTime = true;
-                Crafty.scene("main");
-            }
-        }    
-    });
+        wife.bind("EnterFrame", function() {
+            this._movement.y = -1;
+            this.searchBox.attr({x: this.x-64, y:this.y-192});
+            
+        });
+        
+        wife.searchBox.bind("EnterFrame", function() {
+            if (this.hit("panties")) {
+                if (!this.hit("panties")[0]["obj"].has("hidden")) {
+                    Crafty.audio.play("scream");
+                    player.destroy();
+                    player.sprite.destroy();
+                    firstTime = true;
+                    Crafty.scene("main");
+                }
+            }    
+        });
+    }
             
     firstTime = false;   
    
