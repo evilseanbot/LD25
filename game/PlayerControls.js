@@ -53,6 +53,7 @@
                 if (hole.hit("panties") ) {
                     var panties = hole.hit("panties")[0]["obj"];
                     panties.tween({alpha: 0}, 30);
+                    panties.addComponent("hidden");
                 }                
                 
             } else if (Crafty("Player").hit("coveredHole") ) {
@@ -79,6 +80,7 @@
         } else if (e.key == 67) {
             if (this.holdingObject) {
                 this.heldObject.tween({alpha: 0.00}, 30);
+                this.heldObject.addComponent("hidden");                
                 this.holdingObject = false;
                 Crafty.audio.play("eat");
 

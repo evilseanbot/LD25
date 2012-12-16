@@ -38,7 +38,8 @@ $(document).ready(function() {
   Crafty.audio.add({
       bark: ["bark.wav"],
       eat: ["eat.wav"],
-      dig: ["dig.wav"]
+      dig: ["dig.wav"],
+      scream: ["scream.wav"]      
   });  
   
   Crafty.scene("loading", function() {
@@ -130,7 +131,7 @@ $(document).ready(function() {
     wife.sprite = Crafty.e("2D, Canvas, wife");
     
     wife.searchBox = Crafty.e("2D, Canvas, Color, Collision")
-        .attr({h: 192, w:192})
+        .attr({h: 192, w:192, alpha: 0.5})
         .color("#ffff00");
     
     wife.bind("EnterFrame", function() {
@@ -141,8 +142,13 @@ $(document).ready(function() {
     
     wife.searchBox.bind("EnterFrame", function() {
         if (this.hit("panties")) {
-            player.destroy();
-            Crafty.scene("main");
+            if (!this.hit("panties")[0]["obj"].has("hidden")) {
+                Crafty.audio.play("scream");
+                player.destroy();
+                player.sprite.destroy();
+                firstTime = true;
+                Crafty.scene("main");
+            }
         }    
     });
             
