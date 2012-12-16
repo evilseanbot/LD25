@@ -1,7 +1,29 @@
-TO ADD:
-- Win Condition: (Time?)
-- Improve digging mechanics.
-- Buried evidence / eaten evidence distinction.
+TO ADD NOW:
+- Multiple Rooms
+- Music
+- Throw-up system.
+- Father sprite
+- Policeman Sprite
+- Better tileset
+- Spring Night tileset
+- Dream sequences
+- Controls readout
+- Button-mash to dig
+- Better lose sequence
+- Evidence System more robust (Remove specific references to panties.)
+- Better movement of searchers (Random? predetermined?)
+- Win Sequence (Time?)
 - Better bark sound.
+- Better scream sound.
+
+WORK ON LATER:
 - Bark particles.
 - Dirt particles.
+- Racoons that dig things up.
+- Particles.
+- Doll maker
+- Panties particle
+- Chase away Skanks
+- Kid draws attention of mom
+- Child sprite.
+- Mines.

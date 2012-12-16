@@ -8,7 +8,6 @@ $(document).ready(function() {
   Crafty.init(640, 
               480
               )
-        .background("#bbffbb");
   Crafty.canvas.init(); // Create a Canvas Element 
     
   // This will create entities called hero
@@ -21,11 +20,11 @@ $(document).ready(function() {
      panties: [0,0]
   }); 
 
-  Crafty.sprite(64, 64, "hole.png", {
+  Crafty.sprite(64, 64, "snowHole.png", {
      hole: [0,0]
   }); 
   
-  Crafty.sprite(64, 64, "CoveredHole.png", {
+  Crafty.sprite(64, 64, "snowCoveredHole.png", {
      coveredHole: [0,0]
   }); 
 
@@ -43,18 +42,22 @@ $(document).ready(function() {
   });  
   
   Crafty.scene("loading", function() {
-      Crafty.scene("main");
+      Crafty.load(["tileset.png"], function() {
+          Crafty.scene("main");
+      });
   });
   
   Crafty.scene("main",function() {
     if (firstTime) {
         var player = Crafty.e("Player")
-            .attr({x: 320, y:240, h:64, w:64})        
+            .attr({x: 320, y:240})        
     }
     
-    
+    //Crafty.e("TiledLevel").tiledLevel("tiled/warmupmap"+mapX+""+mapY+".json");    
+    Crafty.e("TiledLevel").tiledLevel("winterhouse_leftcorner.json");    
+        
     panties = Crafty.e("2D, Canvas, panties, Pickup, Tween")
-        .attr({x: 300, y:100});
+        .attr({x: 300, y:100, z:2});
     
     /*
     var particles = Crafty.e("ParticleSystem")
@@ -70,7 +73,7 @@ $(document).ready(function() {
     wife.sprite = Crafty.e("2D, Canvas, wife");
     
     wife.searchBox = Crafty.e("2D, Canvas, Color, Collision")
-        .attr({h: 192, w:192, alpha: 0.5})
+        .attr({h: 192, w:192, z: 3, alpha: 0.5})
         .color("#ffff00");
     
     wife.bind("EnterFrame", function() {

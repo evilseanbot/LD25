@@ -12,7 +12,7 @@ Crafty.c("Player", {
           .addComponent("Solid")
           .addComponent("Persist")  
           .addComponent("Shaker")           
-          .attr({x: 400, y:50, h: 64, w: 64, z:100})
+          .attr({x: 400, y:50, h: 60, w: 60, z:100})
           
         this.sprite = Crafty.e("2D, Canvas, SpriteAnimation, dog, Mouse, Persist, SpriteColor")
           .attr({x: 400, y:50, h: 64, w: 64, z:100})      

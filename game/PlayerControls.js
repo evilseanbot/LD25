@@ -19,10 +19,11 @@
       
       
       this.bind("KeyDown",function(e) {              
-        if (e.key == 90) {
-            if (Crafty("Player").holdingObject) {
-                Crafty("Player").heldObject.attr({z: 0});
-                Crafty("Player").holdingObject = false;
+        if (e.key == 90) { // GRAB button
+            if (this.holdingObject) {
+                this.heldObject.attr({z: 2});
+                this.heldObject.removeComponent("Held");
+                this.holdingObject = false;
             } else {
                touchedObject = false;
             
@@ -37,13 +38,16 @@
               if (touchedObject) {
                 
                   if (activatedObject.has("panties")) {
-                      Crafty("Player").heldObject = activatedObject;
-                      Crafty("Player").heldObject.attr({z:1000});
-                      Crafty("Player").holdingObject = true;
+                      if (!activatedObject.has("hidden")) {
+                          this.heldObject = activatedObject;
+                          this.heldObject.attr({z:1000});
+                          this.heldObject.addComponent("Held");
+                          this.holdingObject = true;
+                      }
                   }
               }
             }
-        } else if (e.key == 88) {
+        } else if (e.key == 88) { // DIG action
             if (Crafty("Player").hit("hole") ) {
                 Crafty.audio.play("dig");            
                 var hole = Crafty("Player").hit("hole")[0]["obj"];
@@ -53,8 +57,11 @@
                 
                 if (hole.hit("panties") ) {
                     var panties = hole.hit("panties")[0]["obj"];
-                    panties.tween({alpha: 0}, 30);
-                    panties.addComponent("hidden");
+                    
+                    if (!panties.has("Held") ) {
+                        panties.tween({alpha: 0}, 30);
+                        panties.addComponent("hidden");
+                    }
                 }                
                 
             } else if (Crafty("Player").hit("coveredHole") ) {
@@ -67,21 +74,24 @@
                 if (hole.hit("panties") ) {
                     var panties = hole.hit("panties")[0]["obj"];
                     panties.tween({alpha: 1}, 30);
+                        panties.removeComponent("hidden");                    
                 }                
 
                 
             } else {        
-                Crafty.audio.play("dig");                                    
-                var hole = Crafty.e("2D, Canvas, hole, Collision, Tween")
-                  .attr({x: Crafty("Player").x, y: Crafty("Player").y, z: -1, alpha: 0.00})
-                  .tween({alpha: 1.00}, 60);
-                  
-                this.shake(60);
+                if (!this.hit("Floor") ) {
+                    Crafty.audio.play("dig");                                    
+                    var hole = Crafty.e("2D, Canvas, hole, Collision, Tween")
+                      .attr({x: Crafty("Player").x, y: Crafty("Player").y, z: 1, alpha: 0.00})
+                      .tween({alpha: 1.00}, 60);
+                      
+                    this.shake(60);
+                }
                 
                 
             }
                     
-        } else if (e.key == 67) {
+        } else if (e.key == 67) { // BARK action
             if (this.holdingObject) {
                 this.heldObject.tween({alpha: 0.00}, 30);
                 this.heldObject.addComponent("hidden");                

@@ -16,20 +16,24 @@ Crafty.c("Shaker", {
             if (this.shaking) {
                 this.shakeCounter++;
                 this.sprite.stop();
+
+                if (this.shakeUp) {
+                    this.shakeUp = false;
+                    this._movement.y = -4;
+                    //this.attr({y: this.y-4});
+                } else {
+                    this.shakeUp = true;
+                    this._movement.y = 4;
+ //                   this.attr({y: this.y+4});                
+                }
                 
                 if (this.shakeCounter > this.timeToShake) {
                     this.shaking = false;
                     this.shakeCounter = 0;
                     this.multiway(5, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW:0, LEFT_ARROW:180});
-                }
+                    this._movement.y = 0;
+                }                
                 
-                if (this.shakeUp) {
-                    this.shakeUp = false;
-                    this.attr({y: this.y-4});
-                } else {
-                    this.shakeUp = true;
-                    this.attr({y: this.y+4});                
-                }
                 
             }
         });
