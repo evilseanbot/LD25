@@ -17,9 +17,25 @@ $(document).ready(function() {
   Crafty.init(640, 
               480
               )
-  Crafty.canvas.init(); // Create a Canvas Element 
+  Crafty.canvas.init(); 
     
-  // This will create entities called hero
+  Crafty.sprite(640, 80, "adultryHideText.png", {
+     adultryMsg: [0,0]
+  }); 
+
+    Crafty.sprite(640, 80, "pantyExplosionText.png", {
+     pantyMsg: [0,0]
+  }); 
+
+  Crafty.sprite(640, 80, "jonfreaks.png", {
+     jonFreaksMsg: [0,0]
+  }); 
+
+    Crafty.sprite(640, 80, "corpsediscovery.png", {
+     corpseMsg: [0,0]
+  }); 
+  
+
   
   Crafty.sprite(64, 64, "dogwalk.png", {
      dog: [0,0]
@@ -129,26 +145,24 @@ $(document).ready(function() {
                 if (this.event == 0) {
                     if (mapX == 0) {
                         if (mapY == 1) {
+                            Crafty.audio.stop();
+                            Crafty.audio.play("tenseSong", -1);                        
                             Crafty("DialogBox").on = true;
                             Crafty("DialogBox").background.attr({alpha:1});
                             Crafty("DialogBox").text.attr({alpha:1});
-                            //Crafty("DialogBox").line2.attr({alpha:1});                        
-                            Crafty("DialogBox").text.text("JON: WE'RE GONNA BE IN TROUBLE WITH RACHEL IF WE DON'T HIDE THIS STUFF.");
-                            //Crafty("DialogBox").line2.text("YOU HAVE TO HELP ME HIDE THIS STUFF BEFORE RACHEL SEES IT.");
-                            //Crafty("Player").disableControl();
+                            Crafty("DialogBox").text.addComponent("adultryMsg");
                             this.event++;                        
                         }
                     }
                 } else if (this.event == 1) {
                     if (Crafty("DialogBox").on == false) {
                         this.event++;
+                         Crafty("DialogBox").text.removeComponent("adultryMsg");                        
                     }
                 } else if (this.event == 2) {
                     var wife = Crafty.e("Searcher, Reset")
-                        .attr({x: (4*64)+(0*640), y:(6*64)+(2*480), z:2});                        
+                        .attr({x: (4*64)+(0*640), y:(4*64)+(2*480), z:2});                        
                     wife.attr({x: wife.x - (mapX*640), y: wife.y - (mapY * 480)});           
-                    Crafty.audio.stop();
-                    Crafty.audio.play("tenseSong", -1);
                     this.event++;                
                 }
             });
@@ -189,8 +203,8 @@ $(document).ready(function() {
                             Crafty.audio.play("tenseSong", -1);                            
                             Crafty("DialogBox").on = true;
                             Crafty("DialogBox").background.attr({alpha:1});
+                            Crafty("DialogBox").text.addComponent("jonFreaksMsg");
                             Crafty("DialogBox").text.attr({alpha:1});
-                            Crafty("DialogBox").text.text("JON: I JUST COULDNT STOP MYSELF. WHAT ARE WE GOING TO DO!?!.");
                             this.event++;                        
                         }
                     }
@@ -198,6 +212,7 @@ $(document).ready(function() {
                     Crafty("ScreenTint").attr({alpha: 0.00});
                     Crafty("ScreenTint").color("black");                                            
                     if (Crafty("DialogBox").on == false) {
+                        Crafty("DialogBox").text.removeComponent("jonFreaksMsg");                    
                         this.event++;
                     }
                 } else if (this.event == 2) {
@@ -213,7 +228,7 @@ $(document).ready(function() {
                 
 
                     var wife = Crafty.e("Searcher, Reset")
-                        .attr({x: (4*64)+(0*640), y:(6*64)+(2*480), z:2});                        
+                        .attr({x: (4*64)+(0*640), y:(4*64)+(2*480), z:2});                        
                     wife.attr({x: wife.x - (mapX*640), y: wife.y - (mapY * 480)});           
                     Crafty.audio.stop();
                     Crafty.audio.play("tenseSong", -1);

@@ -60,13 +60,13 @@ Crafty.c("Readout", {
                  this.xAction.textColor("#000000")                                                                             
              }
              
-             if (player.holdingObject) {
-                 this.cAction.text("C: Eat");
-                 this.cAction.textColor("#000000")                                                   
-             } else {
+             //if (player.holdingObject) {
+             //    this.cAction.text("C: Eat");
+             //    this.cAction.textColor("#000000")                                                   
+             //} else {
                  this.cAction.text("C: Bark");
                  this.cAction.textColor("#000000")                                                   
-             }
+             //}
              
          });
             

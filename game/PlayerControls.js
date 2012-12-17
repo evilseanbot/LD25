@@ -99,7 +99,7 @@
             }
                     
         } else if (e.key == 67) { // BARK action
-            if (this.holdingObject) {
+            /*if (this.holdingObject) {
                 this.heldObject.tween({alpha: 0.00}, 30);
                 this.heldObject.addComponent("Hidden");                
                 this.heldObject
@@ -111,9 +111,9 @@
                 Crafty.audio.play("eat");
                 //this.shake(30);
 
-            } else {
+            } else {*/
                 Crafty.audio.play("bark");
-            }
+            //}
         }
       
         if(this._keys[e.key]) {

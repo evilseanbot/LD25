@@ -58,9 +58,9 @@ Crafty.c("Searcher", {
                         Crafty("DialogBox").background.attr({alpha:1});
                         Crafty("DialogBox").text.attr({alpha:1});
                         if (level == 1) {
-                            Crafty("DialogBox").text.text("RACHEL: WHOSE PANTIES ARE THOSE? WHAT ARE YOU DOING, JON!?!");
+                            Crafty("DialogBox").text.addComponent("pantyMsg");
                         } else if (level == 2) {
-                            Crafty("DialogBox").text.text("WHAT IS THAT? JESUS CHRIST.");
+                            Crafty("DialogBox").text.addComponent("corpseMsg");
                         }
                     }
                 }

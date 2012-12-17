@@ -22,10 +22,9 @@ WORK ON LATER:
 - Better bark sound.
 - Better scream sound.
 - Darker hole images for level 2.
+- Better dialog box images.
 
 TO DO SEAN:
-- Disable eating.
-- Add dialog box images.
 
 
 TO DO CHRIS:
