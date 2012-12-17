@@ -35,7 +35,29 @@ Crafty.c("Player", {
       
       this.activeBox = Crafty.e("2D, Canvas, Collision, Persist")
           .attr({h: 64, w:64})        
+      
+      function checkWin() {
+          var unhiddenEvidence = 0;
+      
+          for (i in Crafty("Evidence")) {
+              if (!isNaN(i)) {
+                  var realIndex = Crafty("Evidence")[i];
+                  if (!Crafty(realIndex).has("Hidden")) {
+                      unhiddenEvidence++;
+                  }
                   
+              }
+          }
+                    
+          if (unhiddenEvidence == 0) {
+              if (gameOn) {
+                  Crafty("ScreenTint").tween({alpha:1.00}, 120);
+              }
+              gameOn = false;
+          }
+      }
+
+      
       this.bind("EnterFrame", function() {
         // Scrolling code.
         /*
@@ -59,6 +81,9 @@ Crafty.c("Player", {
         if (this._facing == "left") {
             this.activeBox.attr({x: this.x-64, y: this.y});
         }
+        
+        checkWin();
+        
       });
           
       this.addComponent("Collision").bind('Moved', function(from) {      
@@ -88,6 +113,6 @@ Crafty.c("Player", {
           */
           
       });      
-      
+            
     }    
 });

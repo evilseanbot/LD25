@@ -38,7 +38,7 @@
               if (touchedObject) {
                 
                   if (activatedObject.has("Pickup")) {
-                      if (!activatedObject.has("hidden")) {
+                      if (!activatedObject.has("Hidden")) {
                           this.heldObject = activatedObject;
                           this.heldObject.attr({z:1000});
                           this.heldObject.addComponent("Held");
@@ -60,7 +60,7 @@
                     
                     if (!pickup.has("Held") ) {
                         pickup.tween({alpha: 0}, 30);
-                        pickup.addComponent("hidden");
+                        pickup.addComponent("Hidden");
                     }
                 }                
                 
@@ -74,7 +74,7 @@
                 if (hole.hit("Pickup") ) {
                     var pickup = hole.hit("Pickup")[0]["obj"];
                     pickup.tween({alpha: 1}, 30);
-                        pickup.removeComponent("hidden");                    
+                        pickup.removeComponent("Hidden");                    
                 }                
 
                 
@@ -94,7 +94,7 @@
         } else if (e.key == 67) { // BARK action
             if (this.holdingObject) {
                 this.heldObject.tween({alpha: 0.00}, 30);
-                this.heldObject.addComponent("hidden");                
+                this.heldObject.addComponent("Hidden");                
                 this.heldObject
                 
                 this.heldObject.timeout(function() {

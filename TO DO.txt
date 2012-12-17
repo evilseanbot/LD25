@@ -1,6 +1,5 @@
 TO ADD NOW:
 - Music
-- Throw-up system.
 - Father sprite
 - Other Woman Sprite
 - Policeman Sprite
@@ -9,9 +8,6 @@ TO ADD NOW:
 - Dream sequences
 - Button-mash to dig
 - Better lose sequence
-- Evidence System more robust (Remove specific references to panties.)
-- Better movement of searchers (Random? predetermined?)
-- Win Sequence (Time? All evidence hidden?)
 - Better bark sound.
 - Better scream sound.
 - Make dog face both directions
@@ -38,13 +34,14 @@ WORK ON LATER:
 - Controls read out tells you when you can bury something.
 - Button-mash to dig
 - Some sort of garbage collection problem: Stuff isn't being destroyed when setting a new scene.
+- Add eating back in.
+- Throw-up system.
 
 TO DO SEAN:
-- Throw-up system.
 - Better lose sequence
-- Better movement of searchers (Random? predetermined?)
-- Win Sequence (Time? All evidence hidden?)
 - Make dog face both directions
+- Disable eating.
+
 - Scenario is played out.
 
 TO DO CHRIS:

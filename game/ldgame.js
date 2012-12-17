@@ -1,6 +1,7 @@
-var mapX = 0;
-var mapY = 0;
+var mapX = 1;
+var mapY = 2;
 var firstTime = true;
+var gameOn =  true;
 
 
 $(document).ready(function() {
@@ -54,24 +55,39 @@ $(document).ready(function() {
   });
   
   Crafty.scene("main",function() {
+  
     if (firstTime) {
         var player = Crafty.e("Player")
             .attr({x: 320, y:240})        
 
         var panties = Crafty.e("2D, Canvas, Evidence, panties, Pickup, Tween, Persist, Roaming")
-            .attr({x: 300, y:100, z:2});    
+            .attr({x: (8*64)+(0*640), y:(4*64)+(1*480), z:2});    
 
         var shirt = Crafty.e("2D, Canvas, Evidence, shirt, Pickup, Tween, Persist, Roaming")
-            .attr({x: 400, y:200, z:2});    
-           
+            .attr({x: (8*64)+(0*640), y:(6*64)+(1*480), z:2});    
+            
+        var wife = Crafty.e("Searcher")
+            .attr({x: (4*64)+(0*640), y:(6*64)+(2*480), z:2});
+            
+       panties.attr({x: panties.x - (mapX*640), y: panties.y - (mapY * 480)});
+       shirt.attr({x: shirt.x - (mapX*640), y: shirt.y - (mapY * 480)});           
+       wife.attr({x: wife.x - (mapX*640), y: wife.y - (mapY * 480)});           
             
         var readout = Crafty.e("Readout");
-            
+
+    var screenTint = Crafty.e("2D, Canvas, Color, ScreenTint, Tween, Persist")
+        .attr({x: 0, y:0, h:480, w:640, alpha: 0.00, z:4000})
+        .color("black");        
+        
+        
     }
+    
+
     
     Crafty.e("TiledLevel").tiledLevel("winterhouse"+mapX+""+mapY+".json");    
 
     var borders = Crafty.e("Borders");    
+    
             
     /*
     var particles = Crafty.e("ParticleSystem")
@@ -79,41 +95,7 @@ $(document).ready(function() {
     
     particles.load(particles, "testParticle.json");
     */
-    
-    if (firstTime) {
-        var wife = Crafty.e("2D, Canvas, Wife, SeperateSprite, Multiway, Roaming, Persist")
-            .attr({x: 300, y: 700, h: 64, w:64})
-            .multiway(3, {});
-            
-        wife.sprite = Crafty.e("2D, Canvas, wife, Roaming, Persist");
-        
-        wife.searchBox = Crafty.e("2D, Canvas, Color, Collision, Roaming, Persist")
-            .attr({h: 192, w:192, z: 3, alpha: 0.5})
-            .color("#ffff00");
-        
-        wife.bind("EnterFrame", function() {
-            this._movement.y = -1;
-            this.searchBox.attr({x: this.x-64, y:this.y-192});
-            
-        });
-        
-        wife.searchBox.bind("EnterFrame", function() {
-            if (this.hit("Evidence")) {
-                if (!this.hit("Evidence")[0]["obj"].has("hidden")) {
-                    Crafty.audio.play("scream");
-                    player.sprite.destroy();
-                    player.destroy();
-                    wife.searchBox.destroy();
-                    wife.sprite.destroy();
-                    Crafty("Roaming").destroy();
-                    
-                    firstTime = true;
-                    Crafty.scene("main");
-                }
-            }    
-        });
-    }
-            
+                
     firstTime = false;   
    
    });
