@@ -33,10 +33,14 @@ $(document).ready(function() {
      shirt: [0,0]
   }); 
 
-    Crafty.sprite(64, 128, "ron.png", {
+  Crafty.sprite(64, 128, "ron.png", {
      ron: [0,0]
   }); 
 
+  Crafty.sprite(64, 128, "pepper.png", {
+     pepper: [0,0]
+  }); 
+  
 
   Crafty.sprite(64, 64, "snowHole.png", {
      hole: [0,0]
@@ -60,7 +64,7 @@ $(document).ready(function() {
   });  
   
   Crafty.scene("loading", function() {
-      Crafty.load(["tileset.png"], function() {
+      Crafty.load(["nighttileset.png"], function() {
           Crafty.scene("main");
       });
   });
@@ -89,11 +93,19 @@ $(document).ready(function() {
                 .attr({x: (7*64)+(0*640), y:(5*64)+(1*480), z:2, h:64, w:64})
               
             ron.sprite = Crafty.e("2D, Canvas, ron, Persist, Roaming, Reset");
+
+            var pepper = Crafty.e("2D, Canvas, SeperateSprite, Persist, Roaming, Reset")
+                .attr({x: (6*64)+(0*640), y:(5*64)+(1*480), z:2, h:64, w:64})
               
+            pepper.sprite = Crafty.e("2D, Canvas, pepper, Persist, Roaming, Reset");
+            
+            
             panties.attr({x: panties.x - (mapX*640), y: panties.y - (mapY * 480)});
             shirt.attr({x: shirt.x - (mapX*640), y: shirt.y - (mapY * 480)});           
             ron.attr({x: ron.x - (mapX*640), y: ron.y - (mapY * 480)});           
+            pepper.attr({x: pepper.x - (mapX*640), y: pepper.y - (mapY * 480)});           
 
+            
             var scenario = Crafty.e("2D, Canvas, Persist, Reset");
 
             scenario.event = 0;
@@ -149,7 +161,7 @@ $(document).ready(function() {
         
     }
     
-    Crafty.e("TiledLevel").tiledLevel("winterhouse"+mapX+""+mapY+".json");    
+    Crafty.e("TiledLevel").tiledLevel("nighthouse"+mapX+""+mapY+".json");    
 
     var borders = Crafty.e("Borders, Reset");    
                 

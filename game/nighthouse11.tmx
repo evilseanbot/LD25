@@ -52,6 +52,11 @@
     <property name="components" value="Solid"/>
    </properties>
   </tile>
+  <tile id="16">
+   <properties>
+    <property name="components" value="Solid"/>
+   </properties>
+  </tile>
   <tile id="18">
    <properties>
     <property name="components" value="Solid"/>
@@ -60,7 +65,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="10" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACxNmYGCQAGJGIOaFYnYsWBiIxdDUYcPkqGMDYh4C6pgJYJg6CSiNC4PU8ROBhYnEAAcDxoNAAQAA
+   H4sIAAAAAAAAC+NmYGBgJ4AFgZgRiHkJYMZhpg5XePBCaZAaABf8kBlAAQAA
   </data>
  </layer>
 </map>
