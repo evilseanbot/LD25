@@ -1,8 +1,10 @@
   Crafty.c("PlayerControls", {
     _keys: {UP_ARROW: 'up', LEFT_ARROW: 'up', S: 'up', D: 'up'},
     _numKeysDown: 0,
-    _facing: 'left',
-    _keysFacing: {UP_ARROW: 'up', LEFT_ARROW:'left', DOWN_ARROW: 'down', RIGHT_ARROW:'right'},
+    xFacing: 'Right',
+    yFacing: 'Down',
+    xKeysFacing: {LEFT_ARROW:'Left', RIGHT_ARROW:'Right'},
+    yKeysFacing: {UP_ARROW: 'Up', DOWN_ARROW: 'Down'},
     
     init: function() {
     
@@ -12,9 +14,14 @@
         this._keys[keyCode] = this._keys[k];
       }
 
-      for(var k in this._keysFacing) {
+      for(var k in this.xKeysFacing) {
         var keyCode = Crafty.keys[k] || k;
-        this._keysFacing[keyCode] = this._keysFacing[k];
+        this.xKeysFacing[keyCode] = this.xKeysFacing[k];
+      }
+
+      for(var k in this.yKeysFacing) {
+        var keyCode = Crafty.keys[k] || k;
+        this.yKeysFacing[keyCode] = this.yKeysFacing[k];
       }
       
       
@@ -111,11 +118,20 @@
       
         if(this._keys[e.key]) {
           //this._keysPressed = 'down';
-          var oldFacing = this._facing;
-          this._facing = this._keysFacing[e.key];                              
-          if ((this._numKeysDown == 0) || (oldFacing != this._facing)) {          
+          var oldXFacing = this.xFacing;
+          var oldYFacing = this.yFacing;
+          
+          if (this.xKeysFacing[e.key]) {
+              this.xFacing = this.xKeysFacing[e.key];                              
+          } else if (this.yKeysFacing[e.key]) {
+              this.yFacing = this.yKeysFacing[e.key];                              
+          }
+          
+          
+          if ((this._numKeysDown == 0) || (oldXFacing != this.xFacing) || (oldYFacing != this.yFacing)) {          
             this.sprite.stop();
-            this.sprite.animate('running', 8, -1);
+            console.log('running' + this.yFacing + "" + this.xFacing);
+            this.sprite.animate('running' + this.yFacing + "" + this.xFacing, 8, -1);
             //this.sprite.animate('PlayerRunning' + this._facing, 30, -1);
           }
           this._numKeysDown++; 
@@ -127,7 +143,7 @@
           this._numKeysDown--;
           if (this._numKeysDown == 0) {          
             this.sprite.stop();
-            this.sprite.animate('standing', 8, -1);
+            this.sprite.animate('standing' + this.yFacing + "" + this.xFacing, 8, -1);
             //this.sprite.animate('PlayerStanding' + this._facing, 30, -1);
           }
         }

@@ -1,18 +1,11 @@
 TO ADD NOW:
 - Music
-- Father sprite
-- Other Woman Sprite
-- Policeman Sprite
-- Better tileset
 - Spring Night tileset
 - Dream sequences
-- Button-mash to dig
-- Better bark sound.
-- Better scream sound.
-- Make dog face all directions
 - Changes to tileset:
   - Add snow.
 - Redo Map.
+- Multiple levels.
 
 WORK ON LATER:
 - Bark particles.
@@ -32,18 +25,14 @@ WORK ON LATER:
 - Some sort of garbage collection problem: Stuff isn't being destroyed when setting a new scene.
 - Add eating back in.
 - Throw-up system.
+- Better bark sound.
+- Better scream sound.
+- Disable eating.
 
 TO DO SEAN:
-- Make dog face all directions
-- Disable eating.
 
 TO DO CHRIS:
 - Music
-- Better bark sound.
-- Better scream sound.
-- Father sprite
-- Other Woman Sprite
-- Policeman Sprite
 - Spring Night tileset
 - Dream sequences
 - Redo Map
