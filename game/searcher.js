@@ -48,7 +48,7 @@ Crafty.c("Searcher", {
         
         
             if (this.searchBox.hit("Evidence")) {
-                if (!this.searchBox.hit("Evidence")[0]["obj"].has("hidden")) {
+                if (!this.searchBox.hit("Evidence")[0]["obj"].has("Hidden")) {
                     if (!this.stopped) {
                         this._movement.y = 0;
                         this.stopped = true;
@@ -57,8 +57,11 @@ Crafty.c("Searcher", {
                         Crafty("DialogBox").on = true;
                         Crafty("DialogBox").background.attr({alpha:1});
                         Crafty("DialogBox").text.attr({alpha:1});
-                        Crafty("DialogBox").text.text("RACHEL: WHOSE PANTIES ARE THOSE? WHAT ARE YOU DOING, JON!?!");
-                        //Crafty("Player").disableControl();
+                        if (level == 1) {
+                            Crafty("DialogBox").text.text("RACHEL: WHOSE PANTIES ARE THOSE? WHAT ARE YOU DOING, JON!?!");
+                        } else if (level == 2) {
+                            Crafty("DialogBox").text.text("WHAT IS THAT? JESUS CHRIST.");
+                        }
                     }
                 }
             }    

@@ -55,9 +55,7 @@ Crafty.c("Player", {
                   
               }
           }
-          
-          console.log(unhiddenEvidence);
-                    
+                              
           if (unhiddenEvidence == 0) {
               if (gameOn) {
                   Crafty("ScreenTint").color("white");

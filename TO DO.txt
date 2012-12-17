@@ -1,7 +1,6 @@
 TO ADD NOW:
-- Spring Night tileset
+- Movies
 - Dream sequences
-- Redo Map.
 
 WORK ON LATER:
 - Bark particles.
@@ -18,16 +17,17 @@ WORK ON LATER:
 - Bury multiple evidence in the same hole.
 - Controls read out tells you when you can bury something.
 - Button-mash to dig
-- Some sort of garbage collection problem: Stuff isn't being destroyed when setting a new scene.
 - Add eating back in.
 - Throw-up system.
 - Better bark sound.
 - Better scream sound.
-- Disable eating.
+- Darker hole images for level 2.
 
 TO DO SEAN:
+- Disable eating.
+- Add dialog box images.
+
 
 TO DO CHRIS:
-- Spring Night tileset
 - Dream sequences
-- Redo Map
+- Movies
