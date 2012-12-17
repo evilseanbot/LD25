@@ -1,5 +1,6 @@
 Crafty.c("Searcher", {
     routineCounter: 0,
+    stopped: false,
     init: function() {
         this.addComponent("2D")
             .addComponent("Canvas")
@@ -12,40 +13,67 @@ Crafty.c("Searcher", {
             
             this._movement.y = -1;
             
-        this.sprite = Crafty.e("2D, Canvas, wife, Roaming, Persist");
+        this.sprite = Crafty.e("2D, Canvas, wife, Roaming, Persist, Reset");
         
-        this.searchBox = Crafty.e("2D, Canvas, Color, Collision, Roaming, Persist")
+        this.searchBox = Crafty.e("2D, Canvas, Color, Collision, Roaming, Persist, Reset")
             .attr({h: 192, w:192, z: 3, alpha: 0.5})
             .color("#ffff00");
         
         this.bind("EnterFrame", function() {
             this.searchBox.attr({x: this.x-64, y:this.y-192});
             
-            this.routineCounter++;
             
-            if (this.routineCounter > 60*10) {
-                this.routineCounter = 0;
-            } else if (this.routineCounter > 60*5) {
-                this._movement.y = 3;
-            } else {
-                this._movement.y = -3;
+            if (!this.stopped) {
+                this.routineCounter++;
+                
+                if (this.routineCounter > 60*10) {
+                    this.routineCounter = 0;
+                } else if (this.routineCounter > 60*5) {
+                    this._movement.y = 3;
+                } else {
+                    this._movement.y = -3;
+                }
             }
         });
         
+        function reset() {
+            Crafty("Reset").destroy();
+      /*      Crafty("Player").sprite.destroy();
+            Crafty("Player").destroy();
+            Crafty("Searcher").searchBox.destroy();
+            Crafty("Searcher").sprite.destroy();
+            Crafty("Roaming").destroy();
+            Crafty("ScreenTint").destroy();*/
+            
+            firstTime = true;
+            Crafty.scene("main");
+            
+        
+        }
+        
+        this.bind("EnterFrame", function() {
+            if (this.stopped && Crafty("DialogBox").on == false) {
+                 Crafty("ScreenTint").tween({alpha:1.00}, 60);
+                 this.timeout(function() {
+                     reset()
+                 }, 60*(1000/30));
+                 this.stopped = false;
+
+            }
         
         
-        this.searchBox.bind("EnterFrame", function() {
-            if (this.hit("Evidence")) {
-                if (!this.hit("Evidence")[0]["obj"].has("hidden")) {
-                    Crafty.audio.play("scream");
-                    Crafty("Player").sprite.destroy();
-                    Crafty("Player").destroy();
-                    this.searchBox.destroy();
-                    this.sprite.destroy();
-                    Crafty("Roaming").destroy();
-                    
-                    firstTime = true;
-                    Crafty.scene("main");
+            if (this.searchBox.hit("Evidence")) {
+                if (!this.searchBox.hit("Evidence")[0]["obj"].has("hidden")) {
+                    if (!this.stopped) {
+                        this._movement.y = 0;
+                        this.stopped = true;
+                        Crafty.audio.play("scream");
+                        Crafty("DialogBox").on = true;
+                        Crafty("DialogBox").background.attr({alpha:1});
+                        Crafty("DialogBox").text.attr({alpha:1});
+                        Crafty("DialogBox").text.text("RACHEL: WHOSE PANTIES ARE THOSE? WHAT ARE YOU DOING, JON!?!");
+                        //Crafty("Player").disableControl();
+                    }
                 }
             }    
         });

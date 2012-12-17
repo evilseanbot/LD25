@@ -14,7 +14,7 @@ Crafty.c("Player", {
           .addComponent("Shaker")           
           .attr({x: 400, y:50, h: 60, w: 60, z:100})
           
-        this.sprite = Crafty.e("2D, Canvas, SpriteAnimation, dog, Mouse, Persist, SpriteColor")
+        this.sprite = Crafty.e("2D, Canvas, SpriteAnimation, dog, Mouse, Persist, SpriteColor, Reset")
           .attr({x: 400, y:50, h: 64, w: 64, z:100})      
           .animate("running", 0, 0, 3)
           .animate("standing", 0, 0, 0);
@@ -33,7 +33,7 @@ Crafty.c("Player", {
           .addComponent("Multiway")
           .multiway(5, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW:0, LEFT_ARROW:180})
       
-      this.activeBox = Crafty.e("2D, Canvas, Collision, Persist")
+      this.activeBox = Crafty.e("2D, Canvas, Collision, Persist, Reset")
           .attr({h: 64, w:64})        
       
       function checkWin() {

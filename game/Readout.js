@@ -3,23 +3,23 @@ Crafty.c("Readout", {
     init: function() {
         this.addComponent("Persist");
         
-        this.background = Crafty.e("2D, Canvas, Color, Persist")
+        this.background = Crafty.e("2D, Canvas, Color, Persist, Reset")
             .attr({x: 0, y: 0, h: 32, w: 640, z:2000})
             .color("#ffffff");
             
         console.log("Created readout");
         
-        this.zAction = Crafty.e("2D, Canvas, Text, Persist")
+        this.zAction = Crafty.e("2D, Canvas, Text, Persist, Reset")
             .attr({x: 20, y: 0, h: 16, w: 200, z:3000})
             .text("Z: Pick up (Nothing)")
             .textColor("#888888");
 
-        this.xAction = Crafty.e("2D, Canvas, Text, Persist")
+        this.xAction = Crafty.e("2D, Canvas, Text, Persist, Reset")
             .attr({x: 220, y: 0, h: 16, w: 200, z:3000})
             .text("X: Dig")
             .textColor("#000000");
 
-        this.cAction = Crafty.e("2D, Canvas, Text, Persist")
+        this.cAction = Crafty.e("2D, Canvas, Text, Persist, Reset")
             .attr({x: 420, y: 0, h: 16, w: 200, z:3000})
             .text("C: Bark")
             .textColor("#000000");

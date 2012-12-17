@@ -7,14 +7,10 @@ TO ADD NOW:
 - Spring Night tileset
 - Dream sequences
 - Button-mash to dig
-- Better lose sequence
 - Better bark sound.
 - Better scream sound.
-- Make dog face both directions
-- Add backwards facing for dog.
+- Make dog face all directions
 - Changes to tileset:
-  - Reverse some tiles.
-  - Add floors not next to walls.
   - Add snow.
 - Redo Map.
 
@@ -38,17 +34,13 @@ WORK ON LATER:
 - Throw-up system.
 
 TO DO SEAN:
-- Better lose sequence
-- Make dog face both directions
+- Make dog face all directions
 - Disable eating.
-
-- Scenario is played out.
 
 TO DO CHRIS:
 - Music
 - Better bark sound.
 - Better scream sound.
-- Add backwards facing for dog.
 - Father sprite
 - Other Woman Sprite
 - Policeman Sprite
@@ -57,5 +49,3 @@ TO DO CHRIS:
 - Redo Map
 - Changes to tileset:
   - Reverse some tiles.
-  - Add floors not next to walls.
-  - Add snow.
