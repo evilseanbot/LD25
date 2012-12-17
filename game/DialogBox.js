@@ -2,11 +2,11 @@ Crafty.c("DialogBox", {
     on: false,
     init: function() {
         this.background = Crafty.e("2D, Canvas, Color, Persist, Reset")
-            .attr({x: 0, y: 400, h: 80, w: 640, z:2000, alpha: 0})
+            .attr({x: 0, y: 400, h: 0, w: 0, z:2000, alpha: 0})
             .color("#4444FF");
             
         this.text = Crafty.e("2D, Canvas, Persist, Reset")
-            .attr({x: 0, y: 400, h: 16, w: 640, z:3000, alpha: 0})
+            .attr({x: 120, y: 380, h: 100, w: 400, z:6000, alpha: 0})
         
         this.bind("KeyDown", function() {
             if (this.on) {

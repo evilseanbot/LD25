@@ -86,20 +86,37 @@ $(document).ready(function() {
   }); 
 
   
-  Crafty.sprite(640, 80, "adultryHideText.png", {
+  Crafty.sprite(400, 100, "Dialogbox1.png", {
      adultryMsg: [0,0]
   }); 
 
-    Crafty.sprite(640, 80, "pantyExplosionText.png", {
+    Crafty.sprite(400, 100, "Dialogbox2.png", {
      pantyMsg: [0,0]
   }); 
 
-  Crafty.sprite(640, 80, "jonfreaks.png", {
+    Crafty.sprite(400, 100, "Dialogbox3.png", {
+     jonSorryMsg: [0,0]
+  }); 
+  
+  
+  Crafty.sprite(400, 100, "Dialogbox4.png", {
      jonFreaksMsg: [0,0]
   }); 
 
-    Crafty.sprite(640, 80, "corpsediscovery.png", {
+    Crafty.sprite(400, 100, "Dialogbox5.png", {
      corpseMsg: [0,0]
+  }); 
+
+    Crafty.sprite(400, 100, "Dialogbox6.png", {
+     end1Msg: [0,0]
+  }); 
+
+    Crafty.sprite(400, 100, "Dialogbox7.png", {
+     end2Msg: [0,0]
+  }); 
+
+    Crafty.sprite(400, 100, "Dialogbox8.png", {
+     end3Msg: [0,0]
   }); 
   
 
@@ -180,6 +197,8 @@ $(document).ready(function() {
   });  */
   
   Crafty.scene("loadLevel2", function() {
+      console.log("Loading level2");
+  
       Crafty.load(["nighttileset.png"], function() {
           Crafty.scene("main");
       });
@@ -335,14 +354,14 @@ $(document).ready(function() {
                             Crafty("DialogBox").on = true;
                             Crafty("DialogBox").background.attr({alpha:1});
                             Crafty("DialogBox").text.attr({alpha:1});
-                            Crafty("DialogBox").text.addComponent("adultryMsg");
+                            Crafty("DialogBox").text.addComponent("jonSorryMsg");
                             this.event++;                        
                         }
                     }
                 } else if (this.event == 1) {
                     if (Crafty("DialogBox").on == false) {
                         this.event++;
-                         Crafty("DialogBox").text.removeComponent("adultryMsg");                        
+                         Crafty("DialogBox").text.removeComponent("jonSorryMsg");                        
                     }
                 } else if (this.event == 2) {
                     level = 3;
@@ -456,10 +475,10 @@ $(document).ready(function() {
                 .attr({x: (5*64)+(0*640), y:(5*64)+(2*480), z:2});    
                 
             var hand1 = Crafty.e("2D, Canvas, Evidence, hand, Pickup, Tween, Persist, Roaming, Reset")
-                .attr({x: (3*64)+(0*640), y:(2*64)+(2*480), z:2});    
+                .attr({x: (3*64)+(0*640), y:(3*64)+(2*480), z:2});    
 
             var hand2 = Crafty.e("2D, Canvas, Evidence, hand, Pickup, Tween, Persist, Roaming, Reset")
-                .attr({x: (4*64)+(0*640), y:(3*64)+(2*480), z:2});    
+                .attr({x: (4*64)+(0*640), y:(4*64)+(2*480), z:2});    
                 
             var leg1 = Crafty.e("2D, Canvas, Evidence, leg, Pickup, Tween, Persist, Roaming, Reset")
                 .attr({x: (2*64)+(0*640), y:(4*64)+(2*480), z:2});                    
@@ -486,16 +505,33 @@ $(document).ready(function() {
                             Crafty("DialogBox").on = true;
                             Crafty("DialogBox").background.attr({alpha:1});
                             Crafty("DialogBox").text.attr({alpha:1});
-                            Crafty("DialogBox").text.addComponent("adultryMsg");
+                            Crafty("DialogBox").text.addComponent("end1Msg");
                             this.event++;                        
                         }
                     }
                 } else if (this.event == 1) {
                     if (Crafty("DialogBox").on == false) {
-                        this.event++;
-                         Crafty("DialogBox").text.removeComponent("adultryMsg");                        
+                        Crafty("DialogBox").text.removeComponent("end1Msg");                    
+                        Crafty("DialogBox").on = true;
+                        Crafty("DialogBox").background.attr({alpha:1});
+                        Crafty("DialogBox").text.attr({alpha:1});
+                        Crafty("DialogBox").text.addComponent("end2Msg");
+                        this.event++;                        
                     }
                 } else if (this.event == 2) {
+                    if (Crafty("DialogBox").on == false) {
+                        Crafty("DialogBox").text.removeComponent("end2Msg");                    
+                        Crafty("DialogBox").on = true;
+                        Crafty("DialogBox").background.attr({alpha:1});
+                        Crafty("DialogBox").text.attr({alpha:1});
+                        Crafty("DialogBox").text.addComponent("end3Msg");
+                        this.event++;                        
+                    }
+                } else if (this.event == 3) {
+                    if (Crafty("DialogBox").on == false) {
+                        this.event++;
+                    }
+                } else if (this.event == 4) {
                     level = 5;
                     this.timeout(function() {
                         setEnd();
