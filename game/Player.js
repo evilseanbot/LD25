@@ -55,12 +55,19 @@ Crafty.c("Player", {
                   
               }
           }
+          
+          console.log(unhiddenEvidence);
                     
           if (unhiddenEvidence == 0) {
               if (gameOn) {
+                  Crafty("ScreenTint").color("white");
                   Crafty("ScreenTint").tween({alpha:1.00}, 120);
+              level++;
+              Crafty("Player").timeout(function() {
+                  reset()
+              }, 60*(1000/30));
+              gameOn = false;                                
               }
-              gameOn = false;
           }
       }
 

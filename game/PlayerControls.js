@@ -88,7 +88,7 @@
             } else {        
                 if (!this.hit("Floor") ) {
                     Crafty.audio.play("dig");                                    
-                    var hole = Crafty.e("2D, Canvas, hole, Collision, Tween, Roaming, Persist")
+                    var hole = Crafty.e("2D, Canvas, hole, Collision, Tween, Roaming, Persist, Reset")
                       .attr({x: Crafty("Player").x, y: Crafty("Player").y, z: 1, alpha: 0.00})
                       .tween({alpha: 1.00}, 60);
                       
@@ -130,7 +130,6 @@
           
           if ((this._numKeysDown == 0) || (oldXFacing != this.xFacing) || (oldYFacing != this.yFacing)) {          
             this.sprite.stop();
-            console.log('running' + this.yFacing + "" + this.xFacing);
             this.sprite.animate('running' + this.yFacing + "" + this.xFacing, 8, -1);
             //this.sprite.animate('PlayerRunning' + this._facing, 30, -1);
           }

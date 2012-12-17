@@ -1,11 +1,7 @@
 TO ADD NOW:
-- Music
 - Spring Night tileset
 - Dream sequences
-- Changes to tileset:
-  - Add snow.
 - Redo Map.
-- Multiple levels.
 
 WORK ON LATER:
 - Bark particles.
@@ -32,9 +28,6 @@ WORK ON LATER:
 TO DO SEAN:
 
 TO DO CHRIS:
-- Music
 - Spring Night tileset
 - Dream sequences
 - Redo Map
-- Changes to tileset:
-  - Reverse some tiles.

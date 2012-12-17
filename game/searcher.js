@@ -35,22 +35,7 @@ Crafty.c("Searcher", {
                 }
             }
         });
-        
-        function reset() {
-            Crafty("Reset").destroy();
-      /*      Crafty("Player").sprite.destroy();
-            Crafty("Player").destroy();
-            Crafty("Searcher").searchBox.destroy();
-            Crafty("Searcher").sprite.destroy();
-            Crafty("Roaming").destroy();
-            Crafty("ScreenTint").destroy();*/
-            
-            firstTime = true;
-            Crafty.scene("main");
-            
-        
-        }
-        
+                
         this.bind("EnterFrame", function() {
             if (this.stopped && Crafty("DialogBox").on == false) {
                  Crafty("ScreenTint").tween({alpha:1.00}, 60);
@@ -67,6 +52,7 @@ Crafty.c("Searcher", {
                     if (!this.stopped) {
                         this._movement.y = 0;
                         this.stopped = true;
+                        Crafty.audio.stop();
                         Crafty.audio.play("scream");
                         Crafty("DialogBox").on = true;
                         Crafty("DialogBox").background.attr({alpha:1});
