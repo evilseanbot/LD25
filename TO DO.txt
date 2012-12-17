@@ -1,6 +1,10 @@
 TO ADD NOW:
-- Movies
-- Dream sequences
+- Submit the game!
+- Improve wife sprite
+- Have searchers move through corners.
+- Have searchers light reflect what direction they're moving through.
+- Better dialog box images.
+- Controls read out tells you when you can bury something.
 
 WORK ON LATER:
 - Bark particles.
@@ -15,18 +19,21 @@ WORK ON LATER:
 - Mines.
 - Fix glitch with shaking/seizure.
 - Bury multiple evidence in the same hole.
-- Controls read out tells you when you can bury something.
 - Button-mash to dig
 - Add eating back in.
 - Throw-up system.
 - Better bark sound.
 - Better scream sound.
-- Darker hole images for level 2.
-- Better dialog box images.
 
 TO DO SEAN:
-
+- Submit the game!
+- Have searchers move through corners.
+- Have searchers light reflect what direction they're moving through.
+- Controls read out tells you when you can bury something.
+- Body parts strewn around at ending.
+- Add title screen
 
 TO DO CHRIS:
-- Dream sequences
-- Movies
+- Improve wife sprite
+- Add improved dialog boxes.
+- Better dialog box images.

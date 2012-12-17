@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="8" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="tileset" tilewidth="64" tileheight="64">
+  <image source="../tileset.png" width="320" height="320"/>
+  <tile id="14">
+   <properties>
+    <property name="components" value="Solid"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="components" value="Solid"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="10" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACxNmYGAQI4CFoZgUdRJI4hIEzMOmVgKLOn4kOX485gkjmYMujs19lPgXALJIgX5AAQAA
+  </data>
+ </layer>
+</map>

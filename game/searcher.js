@@ -59,7 +59,7 @@ Crafty.c("Searcher", {
                         Crafty("DialogBox").text.attr({alpha:1});
                         if (level == 1) {
                             Crafty("DialogBox").text.addComponent("pantyMsg");
-                        } else if (level == 2) {
+                        } else if (level == 3) {
                             Crafty("DialogBox").text.addComponent("corpseMsg");
                         }
                     }

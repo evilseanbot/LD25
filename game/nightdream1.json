@@ -1,0 +1,50 @@
+{ "height":8,
+ "layers":[
+        {
+         "data":[3, 22, 22, 22, 22, 22, 22, 22, 22, 3, 3, 22, 22, 22, 22, 22, 22, 22, 22, 3, 3, 22, 22, 22, 22, 22, 22, 22, 22, 3, 3, 22, 22, 22, 22, 22, 2, 8, 22, 3, 3, 22, 22, 22, 22, 22, 13, 13, 22, 3, 3, 22, 22, 22, 22, 22, 22, 22, 22, 3, 3, 22, 22, 22, 22, 24, 22, 22, 22, 3, 3, 3, 22, 24, 22, 22, 24, 22, 3, 3],
+         "height":8,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }],
+ "orientation":"orthogonal",
+ "properties":
+    {
+
+    },
+ "tileheight":64,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "image":"nighttileset.png",
+         "imageheight":320,
+         "imagewidth":320,
+         "margin":0,
+         "name":"nighttileset",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":64,
+         "tileproperties":
+            {
+             "2":
+                {
+                 "components":"Solid"
+                },
+             "7":
+                {
+                 "components":"solid"
+                }
+            },
+         "tilewidth":64
+        }],
+ "tilewidth":64,
+ "version":1,
+ "width":10
+}

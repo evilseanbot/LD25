@@ -55,11 +55,11 @@
               }
             }
         } else if (e.key == 88) { // DIG action
-            if (Crafty("Player").hit("hole") ) {
+            if (Crafty("Player").hit(holeType+"Hole") ) {
                 Crafty.audio.play("dig");            
-                var hole = Crafty("Player").hit("hole")[0]["obj"];
-                hole.addComponent("coveredHole");
-                hole.removeComponent("hole");
+                var hole = Crafty("Player").hit(holeType+"Hole")[0]["obj"];
+                hole.addComponent(holeType+"CoveredHole");
+                hole.removeComponent(holeType+"Hole");
                 //this.shake(60);
                 
                 if (hole.hit("Pickup") ) {
@@ -71,11 +71,11 @@
                     }
                 }                
                 
-            } else if (Crafty("Player").hit("coveredHole") ) {
+            } else if (Crafty("Player").hit(holeType+"CoveredHole") ) {
                 Crafty.audio.play("dig");                                                
-                var hole = Crafty("Player").hit("coveredHole")[0]["obj"];
-                hole.addComponent("hole");
-                hole.removeComponent("CoveredHole");                
+                var hole = Crafty("Player").hit(holeType+"CoveredHole")[0]["obj"];
+                hole.addComponent(holeType+"Hole");
+                hole.removeComponent(holeType+"CoveredHole");                
                 //this.shake(60);
                 
                 if (hole.hit("Pickup") ) {
@@ -87,8 +87,9 @@
                 
             } else {        
                 if (!this.hit("Floor") ) {
-                    Crafty.audio.play("dig");                                    
-                    var hole = Crafty.e("2D, Canvas, hole, Collision, Tween, Roaming, Persist, Reset")
+                    Crafty.audio.play("dig");          
+                    console.log("2D, Canvas, "+ holeType + "Hole, Collision, Tween, Roaming, Persist, Reset");                    
+                    var hole = Crafty.e("2D, Canvas, "+ holeType + "Hole, Collision, Tween, Roaming, Persist, Reset")
                       .attr({x: Crafty("Player").x, y: Crafty("Player").y, z: 1, alpha: 0.00})
                       .tween({alpha: 1.00}, 60);
                       

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="8" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="nighttileset" tilewidth="64" tileheight="64">
+  <image source="nighttileset.png" width="320" height="320"/>
+  <tile id="2">
+   <properties>
+    <property name="components" value="Solid"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="components" value="solid"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="10" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NmYGBgBmIxIJaA0mJIfGYkLIEmh66HGYtZElj04VOHzTxsarGpwaUWmxpqYQCfU2D/QAEAAA==
+  </data>
+ </layer>
+</map>

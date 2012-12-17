@@ -3,6 +3,7 @@ var mapY = 2;
 var firstTime = true;
 var gameOn =  true;
 level = 1;
+var holeType = "snow";
 
 function reset() {
     Crafty("Reset").destroy();
@@ -11,6 +12,38 @@ function reset() {
     Crafty.scene("main");
 }
 
+function setLevel2() {
+    Crafty("Reset").destroy();
+    Crafty.audio.stop();            
+    firstTime = true;
+    Crafty.scene("loadLevel2");
+}
+
+function setEnd() {
+    Crafty("Reset").destroy();
+    Crafty.audio.stop();            
+    firstTime = true;
+    Crafty.scene("ending");
+}
+
+
+function nextSlide(moviePlayer) {
+          Crafty("ScreenTint").tween({alpha:0.00}, 60);
+        
+          
+          if (moviePlayer.slide > 3 && level == 5) {
+              moviePlayer.slide = 5;
+              moviePlayer.removeComponent("opening"+moviePlayer.slide-2);              
+              moviePlayer.removeComponent("opening"+moviePlayer.slide-1);
+              moviePlayer.addComponent("opening"+moviePlayer.slide);                                  
+          } else if (moviePlayer.slide > 4) {
+              Crafty.scene("loading");
+          } else {
+              moviePlayer.removeComponent("opening"+moviePlayer.slide-1);
+              moviePlayer.addComponent("opening"+moviePlayer.slide);                              
+          }
+
+}
 
 $(document).ready(function() {
 
@@ -18,7 +51,33 @@ $(document).ready(function() {
               480
               )
   Crafty.canvas.init(); 
-    
+
+  Crafty.sprite(640, 480, "Opening1.png", {
+     opening1: [0,0]
+  }); 
+  
+  Crafty.sprite(640, 480, "Opening2.png", {
+     opening2: [0,0]
+  }); 
+
+  Crafty.sprite(640, 480, "Opening3.png", {
+     opening3: [0,0]
+  }); 
+
+  Crafty.sprite(640, 480, "Opening4.png", {
+     opening4: [0,0]
+  }); 
+
+  Crafty.sprite(640, 480, "Opening5.png", {
+     opening5: [0,0]
+  }); 
+  
+  
+  Crafty.sprite(640, 480, "dreamBlur.png", {
+     dreamBlur: [0,0]
+  }); 
+
+  
   Crafty.sprite(640, 80, "adultryHideText.png", {
      adultryMsg: [0,0]
   }); 
@@ -72,13 +131,22 @@ $(document).ready(function() {
   
 
   Crafty.sprite(64, 64, "snowHole.png", {
-     hole: [0,0]
+     snowHole: [0,0]
   }); 
   
   Crafty.sprite(64, 64, "snowCoveredHole.png", {
-     coveredHole: [0,0]
+     snowCoveredHole: [0,0]
   }); 
 
+  Crafty.sprite(64, 64, "darkHole.png", {
+     darkHole: [0,0]
+  }); 
+  
+  Crafty.sprite(64, 64, "darkCoveredHole.png", {
+     darkCoveredHole: [0,0]
+  }); 
+  
+  
   Crafty.sprite(64, 128, "wife.png", {
      wife: [0,0]
   });   
@@ -98,10 +166,60 @@ $(document).ready(function() {
   });  
   
   Crafty.scene("loading", function() {
-      Crafty.load(["nighttileset.png", "tileset.png"], function() {
+      Crafty.load(["tileset.png"], function() {
+          Crafty.scene("intro");
+      });
+  });  
+  
+  Crafty.scene("loadLevel2", function() {
+      Crafty.load(["nighttileset.png"], function() {
           Crafty.scene("main");
       });
   });
+  
+  Crafty.scene("intro", function() {
+        Crafty.audio.play("happySong", -1);  
+  
+     var screenTint = Crafty.e("2D, Canvas, Color, ScreenTint, Tween")
+            .attr({x: 0, y:0, h:480, w:640, alpha: 0.00, z:4000})
+            .color("black");        
+  
+      var moviePlayer = Crafty.e("2D, Canvas, opening1");
+      
+      moviePlayer.slide = 1;
+      moviePlayer.bind("KeyDown", function() {
+          console.log(this.slide);
+      
+          this.slide++;
+          Crafty("ScreenTint").tween({alpha:1.00}, 60);
+          this.timeout(function () {
+              nextSlide(this)
+          }, 60*(1000/60));      
+      });
+  });
+
+  Crafty.scene("ending", function() {
+        Crafty.audio.play("happySong", -1);    
+  
+     var screenTint = Crafty.e("2D, Canvas, Color, ScreenTint, Tween")
+            .attr({x: 0, y:0, h:480, w:640, alpha: 0.00, z:4000})
+            .color("black");        
+  
+      var moviePlayer = Crafty.e("2D, Canvas, opening2");
+      
+      moviePlayer.slide = 2;
+      moviePlayer.bind("KeyDown", function() {
+          console.log(this.slide);
+      
+          this.slide++;
+          Crafty("ScreenTint").tween({alpha:1.00}, 60);
+          this.timeout(function () {
+              nextSlide(this)
+          }, 60*(1000/60));      
+      });
+  });
+  
+  
   
   Crafty.scene("main",function() {
   
@@ -112,6 +230,8 @@ $(document).ready(function() {
         gameOn = true;            
 
         if (level == 1) {    
+            
+            holeType = "snow";
             
             var panties = Crafty.e("2D, Canvas, Evidence, panties, Pickup, Tween, Persist, Roaming, Reset")
                 .attr({x: (8*64)+(0*640), y:(4*64)+(1*480), z:2});    
@@ -126,7 +246,7 @@ $(document).ready(function() {
             ron.sprite = Crafty.e("2D, Canvas, ron, Persist, Roaming, Reset");
 
             var pepper = Crafty.e("2D, Canvas, SeperateSprite, Persist, Roaming, Reset")
-                .attr({x: (6*64)+(0*640), y:(5*64)+(1*480), z:2, h:64, w:64})
+                .attr({x: (6*64)+(0*640), y:(4*64)+(1*480), z:2, h:64, w:64})
               
             pepper.sprite = Crafty.e("2D, Canvas, pepper, Persist, Roaming, Reset");
             
@@ -169,6 +289,63 @@ $(document).ready(function() {
 
             
         } else if (level == 2) {
+            mapX = 0;
+            mapY = 0;
+
+            holeType = "snow";
+
+            
+           var dreamBlur = Crafty.e("2D, Canvas, dreamBlur, Persist, Reset")
+                  .attr({z:4000});
+
+            var panties = Crafty.e("2D, Canvas, Evidence, panties, Pickup, Tween, Persist, Roaming, Reset")
+                .attr({x: (8*64)+(2*640), y:(4*64)+(2*480), z:2});    
+
+            var ron = Crafty.e("2D, Canvas, SeperateSprite, Persist, Roaming, Reset")
+                .attr({x: (4*64)+(0*640), y:(2*64)+(2*480), z:2, h:64, w:64})
+            ron.sprite = Crafty.e("2D, Canvas, ron, Persist, Roaming, Reset");
+                
+                
+            panties.attr({x: panties.x - (mapX*640), y: panties.y - (mapY * 480)});
+            ron.attr({x: ron.x - (mapX*640), y: ron.y - (mapY * 480)});           
+
+            var scenario = Crafty.e("2D, Canvas, Persist, Reset");
+
+            scenario.event = 0;            
+            
+            scenario.bind("EnterFrame", function() {
+                if (this.event == 0) {
+                    if (mapX == 0) {
+                        if (mapY == 2) {
+                            Crafty("DialogBox").on = true;
+                            Crafty("DialogBox").background.attr({alpha:1});
+                            Crafty("DialogBox").text.attr({alpha:1});
+                            Crafty("DialogBox").text.addComponent("adultryMsg");
+                            this.event++;                        
+                        }
+                    }
+                } else if (this.event == 1) {
+                    if (Crafty("DialogBox").on == false) {
+                        this.event++;
+                         Crafty("DialogBox").text.removeComponent("adultryMsg");                        
+                    }
+                } else if (this.event == 2) {
+                    level = 3;
+                    this.timeout(function() {
+                        setLevel2();
+                    }, 120*(1000/60));
+                    Crafty("ScreenTint").tween({alpha:1.00}, 120);                    
+                    this.event++;
+                }
+            });
+
+            
+            
+
+        } else if (level == 3) {
+                    holeType = "dark";
+
+        
             var ear = Crafty.e("2D, Canvas, Evidence, ear, Pickup, Tween, Persist, Roaming, Reset")
                 .attr({x: (8*64)+(1*640), y:(5*64)+(2*480), z:2});    
 
@@ -244,7 +421,57 @@ $(document).ready(function() {
             });
             
         
+        } else if (level == 4) {
+            mapX = 0;
+            mapY = 0;
+            
+           holeType = "dark";
+            
+           var dreamBlur = Crafty.e("2D, Canvas, dreamBlur, Persist, Reset")
+                  .attr({z:4000});
+
+            var panties = Crafty.e("2D, Canvas, Evidence, panties, Pickup, Tween, Persist, Roaming, Reset")
+                .attr({x: (8*64)+(2*640), y:(4*64)+(2*480), z:2});    
+
+            var ron = Crafty.e("2D, Canvas, SeperateSprite, Persist, Roaming, Reset")
+                .attr({x: (4*64)+(0*640), y:(3*64)+(2*480), z:2, h:64, w:64})
+            ron.sprite = Crafty.e("2D, Canvas, ron, Persist, Roaming, Reset");
+                
+                
+            panties.attr({x: panties.x - (mapX*640), y: panties.y - (mapY * 480)});
+            ron.attr({x: ron.x - (mapX*640), y: ron.y - (mapY * 480)});           
+
+            var scenario = Crafty.e("2D, Canvas, Persist, Reset");
+
+            scenario.event = 0;            
+            
+            scenario.bind("EnterFrame", function() {
+                if (this.event == 0) {
+                    if (mapX == 0) {
+                        if (mapY == 2) {
+                            Crafty("DialogBox").on = true;
+                            Crafty("DialogBox").background.attr({alpha:1});
+                            Crafty("DialogBox").text.attr({alpha:1});
+                            Crafty("DialogBox").text.addComponent("adultryMsg");
+                            this.event++;                        
+                        }
+                    }
+                } else if (this.event == 1) {
+                    if (Crafty("DialogBox").on == false) {
+                        this.event++;
+                         Crafty("DialogBox").text.removeComponent("adultryMsg");                        
+                    }
+                } else if (this.event == 2) {
+                    level = 5;
+                    this.timeout(function() {
+                        setEnd();
+                    }, 120*(1000/60));
+                    Crafty("ScreenTint").tween({alpha:1.00}, 120);                    
+                    this.event++;
+                }
+            });
         }
+         
         
         var player = Crafty.e("Player, Reset")
            .attr({x: 320, y:240})       
@@ -253,8 +480,10 @@ $(document).ready(function() {
         var readout = Crafty.e("Readout, Reset");
 
         var screenTint = Crafty.e("2D, Canvas, Color, ScreenTint, Tween, Persist, Reset")
-            .attr({x: 0, y:0, h:480, w:640, alpha: 0.00, z:4000})
-            .color("black");        
+            .attr({x: 0, y:0, h:480, w:640, alpha: 1.00, z:4000})
+            .color("white");
+
+        screenTint.tween({alpha: 0.00}, 120);
             
         var dialogBox = Crafty.e("DialogBox, Reset");
      
@@ -264,11 +493,13 @@ $(document).ready(function() {
     }
     
     if (level == 1) {
-        console.log("Level is 1!");
         Crafty.e("TiledLevel").tiledLevel("winterhouse"+mapX+""+mapY+".json");    
     } else if (level == 2) {
-        console.log("Level is 2!");    
+        Crafty.e("TiledLevel").tiledLevel("winterdream"+mapY+".json");                
+    } else if (level == 3) {
         Crafty.e("TiledLevel").tiledLevel("nighthouse"+mapX+""+mapY+".json");        
+    } else if (level == 4) {
+        Crafty.e("TiledLevel").tiledLevel("nightdream"+mapY+".json");        
     }
         
     var borders = Crafty.e("Borders, Reset");    
@@ -284,5 +515,5 @@ $(document).ready(function() {
    
    });
     
-  Crafty.scene("loading");
+  Crafty.scene("intro");
 });
