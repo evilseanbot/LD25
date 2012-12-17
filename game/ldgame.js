@@ -37,7 +37,7 @@ function nextSlide(moviePlayer) {
               moviePlayer.removeComponent("opening"+moviePlayer.slide-1);
               moviePlayer.addComponent("opening"+moviePlayer.slide);                                  
           } else if (moviePlayer.slide > 4) {
-              Crafty.scene("loading");
+              Crafty.scene("loadLevel1");
           } else {
               moviePlayer.removeComponent("opening"+moviePlayer.slide-1);
               moviePlayer.addComponent("opening"+moviePlayer.slide);                              
@@ -47,11 +47,19 @@ function nextSlide(moviePlayer) {
 
 $(document).ready(function() {
 
+  $("body").append("<div class='container'>");
+
   Crafty.init(640, 
               480
               )
   Crafty.canvas.init(); 
 
+  //$("body").append("</div>");
+  
+  Crafty.sprite(640, 480, "Opening0.png", {
+     opening0: [0,0]
+  }); 
+  
   Crafty.sprite(640, 480, "Opening1.png", {
      opening1: [0,0]
   }); 
@@ -165,17 +173,24 @@ $(document).ready(function() {
       tenseSong: ["HidingStuff.wav"]
   });  
   
-  Crafty.scene("loading", function() {
+/*  Crafty.scene("loading", function() {
       Crafty.load(["tileset.png"], function() {
           Crafty.scene("intro");
       });
-  });  
+  });  */
   
   Crafty.scene("loadLevel2", function() {
       Crafty.load(["nighttileset.png"], function() {
           Crafty.scene("main");
       });
   });
+
+  Crafty.scene("loadLevel1", function() {
+      Crafty.load(["tileset.png"], function() {
+          Crafty.scene("main");
+      });
+  });
+
   
   Crafty.scene("intro", function() {
         Crafty.audio.play("happySong", -1);  
@@ -184,9 +199,9 @@ $(document).ready(function() {
             .attr({x: 0, y:0, h:480, w:640, alpha: 0.00, z:4000})
             .color("black");        
   
-      var moviePlayer = Crafty.e("2D, Canvas, opening1");
+      var moviePlayer = Crafty.e("2D, Canvas, opening0");
       
-      moviePlayer.slide = 1;
+      moviePlayer.slide = 0;
       moviePlayer.bind("KeyDown", function() {
           console.log(this.slide);
       
@@ -433,6 +448,25 @@ $(document).ready(function() {
             var panties = Crafty.e("2D, Canvas, Evidence, panties, Pickup, Tween, Persist, Roaming, Reset")
                 .attr({x: (8*64)+(2*640), y:(4*64)+(2*480), z:2});    
 
+       
+            var ear1 = Crafty.e("2D, Canvas, Evidence, ear, Pickup, Tween, Persist, Roaming, Reset")
+                .attr({x: (8*64)+(0*640), y:(1*64)+(2*480), z:2});    
+
+            var ear2 = Crafty.e("2D, Canvas, Evidence, ear, Pickup, Tween, Persist, Roaming, Reset")
+                .attr({x: (5*64)+(0*640), y:(5*64)+(2*480), z:2});    
+                
+            var hand1 = Crafty.e("2D, Canvas, Evidence, hand, Pickup, Tween, Persist, Roaming, Reset")
+                .attr({x: (3*64)+(0*640), y:(2*64)+(2*480), z:2});    
+
+            var hand2 = Crafty.e("2D, Canvas, Evidence, hand, Pickup, Tween, Persist, Roaming, Reset")
+                .attr({x: (4*64)+(0*640), y:(3*64)+(2*480), z:2});    
+                
+            var leg1 = Crafty.e("2D, Canvas, Evidence, leg, Pickup, Tween, Persist, Roaming, Reset")
+                .attr({x: (2*64)+(0*640), y:(4*64)+(2*480), z:2});                    
+
+            var leg2 = Crafty.e("2D, Canvas, Evidence, leg, Pickup, Tween, Persist, Roaming, Reset")
+                .attr({x: (6*64)+(0*640), y:(3*64)+(2*480), z:2});                    
+                
             var ron = Crafty.e("2D, Canvas, SeperateSprite, Persist, Roaming, Reset")
                 .attr({x: (4*64)+(0*640), y:(3*64)+(2*480), z:2, h:64, w:64})
             ron.sprite = Crafty.e("2D, Canvas, ron, Persist, Roaming, Reset");

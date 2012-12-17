@@ -24,16 +24,15 @@ WORK ON LATER:
 - Throw-up system.
 - Better bark sound.
 - Better scream sound.
+- Center the canvas.
 
 TO DO SEAN:
 - Submit the game!
 - Have searchers move through corners.
 - Have searchers light reflect what direction they're moving through.
 - Controls read out tells you when you can bury something.
-- Body parts strewn around at ending.
-- Add title screen
 
 TO DO CHRIS:
 - Improve wife sprite
 - Add improved dialog boxes.
-- Better dialog box images.
+
