@@ -76,7 +76,8 @@
             }
             return _results;
           })();
-          Crafty.load(tsImages);
+          var imagesLoaded = true;
+          Crafty.load(tsImages, function() {
             var layer, _i, _j, _len, _len1;
             for (_i = 0, _len = tss.length; _i < _len; _i++) {
               ts = tss[_i];
@@ -87,7 +88,22 @@
               _this.makeLayer(layer);
             }
             _this.trigger("TiledLevelLoaded", _this);
+            imagesLoaded = false;
             return null;
+           });
+           if (imagesLoaded) {
+              var layer, _i, _j, _len, _len1;
+              for (_i = 0, _len = tss.length; _i < _len; _i++) {
+                ts = tss[_i];
+                _this.makeTiles(ts, drawType);
+              }
+              for (_j = 0, _len1 = lLayers.length; _j < _len1; _j++) {
+                layer = lLayers[_j];
+                _this.makeLayer(layer);
+              }
+              _this.trigger("TiledLevelLoaded", _this);
+              return null;           
+           }
           return null;
         }
       });
