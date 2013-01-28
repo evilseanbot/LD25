@@ -98,6 +98,10 @@
                 
                 
             }
+			
+			var dust = Crafty.e("ParticleSystem");
+			dust.load("testParticle.json");
+			dust.attr({x: Crafty("Player").x+32, y: Crafty("Player").y+32, z: Crafty("Player").z});
                     
         } else if (e.key == 67) { // BARK action
             /*if (this.holdingObject) {
